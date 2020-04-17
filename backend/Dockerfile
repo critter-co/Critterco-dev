@@ -1,24 +1,35 @@
-FROM python:3.7.6-alpine3.11
-LABEL maintainer="Hossein Mirjalali"
+FROM revolutionsystems/python:3.6.6-wee-optimized-lto
+MAINTAINER Ioannis Dritsas <dritsas@intelligems.eu>
 
-ENV PYTHONUNBUFFERED 1
-# Installig python requirements 
+ENV PYTHONUNBUFFERED=1
+ENV DEBIAN_FRONTEND=noninteractive
+# ENV GDAL_SKIP=DODS
+
+# Install GDAL dependencies
+RUN echo deb http://deb.debian.org/debian testing main contrib non-free >> /etc/apt/sources.list && \
+        apt-get update && \
+        apt-get install -y libgdal-dev tk g++ --no-install-recommends && \
+        pip install pipenv && \
+        pip install gunicorn && \
+        apt-get clean -y
+
+# Update C env vars so compiler can find gdal
+ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
+ENV C_INCLUDE_PATH=/usr/include/gdal
+
+ENV LC_ALL="C.UTF-8"
+ENV LC_CTYPE="C.UTF-8"
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+RUN mkdir -p /vol/web/media
+RUN mkdir -p /vol/web/static
+
 COPY ./backend/requirements.txt /requirements.txt
-RUN apk add --update --no-cache postgresql-client jpeg-dev
-RUN apk add --update --no-cache --virtual .tmp-build-deps \
-        gcc libc-dev python-dev musl-dev linux-headers postgresql-dev musl-dev zlib zlib-dev
 RUN pip install -r /requirements.txt
-RUN apk del .tmp-build-deps
 
-# Creating and copying files to work directory.
 RUN mkdir /backend
 WORKDIR /backend
 COPY ./backend /backend
 
-# Creating seperate directories for Media and Static files. Also adding the user that Docker works with.
-RUN mkdir -p /vol/web/media
-RUN mkdir -p /vol/web/static
-RUN adduser -D user
-RUN chown -R user:user /vol/
-RUN chmod -R 755 /vol/web 
-USER user
