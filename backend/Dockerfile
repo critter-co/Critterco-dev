@@ -1,5 +1,5 @@
 FROM revolutionsystems/python:3.6.6-wee-optimized-lto
-MAINTAINER Ioannis Dritsas <dritsas@intelligems.eu>
+
 
 ENV PYTHONUNBUFFERED=1
 ENV DEBIAN_FRONTEND=noninteractive

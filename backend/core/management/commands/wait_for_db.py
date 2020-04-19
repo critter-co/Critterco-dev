@@ -12,6 +12,7 @@ class Command(BaseCommand):
         self.stdout.write('Waiting for database...')
         db_conn = None
         while not db_conn:
+            time.sleep(5)
             try:
                 db_conn = connections['default']
             except OperationalError:
