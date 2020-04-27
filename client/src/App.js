@@ -5,11 +5,15 @@ import "./App.scss";
 import { Layout } from "./Components/Layouts/Layout";
 import BizList from "./Components/BizCards/BizList";
 import { NavBar } from "./Components/NavBar/NavBar";
+import TestBar from "./Components/NavBar/TestBar";
+import BizTry from "./Components/BizCards/BizTry";
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <TestBar />
+        <BizTry />
         <NavBar />
         <Layout>
           <Router>
