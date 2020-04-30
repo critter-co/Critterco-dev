@@ -1,6 +1,6 @@
-.env
-# Created by https://www.gitignore.io/api/react,django
-# Edit at https://www.gitignore.io/?templates=react,django
+
+# Created by https://www.gitignore.io/api/vuejs,django
+# Edit at https://www.gitignore.io/?templates=vuejs,django
 
 ### Django ###
 *.log
@@ -119,19 +119,11 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-### react ###
-.DS_*
-logs
-**/*.backup.*
-**/*.back.*
+### Vuejs ###
+# Recommended template: Node.gitignore
 
-node_modules
-bower_components
+node_modules/
+npm-debug.log
+yarn-error.log
 
-*.sublime*
-
-psd
-thumb
-sketch
-
-# End of https://www.gitignore.io/api/react,django
+# End of https://www.gitignore.io/api/vuejs,django
