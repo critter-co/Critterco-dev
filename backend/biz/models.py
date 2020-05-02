@@ -1,8 +1,22 @@
+import uuid
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.gis.db import models
+from django.utils.translation import ugettext as _
+
+WEEKDAYS = [
+    (1, _("Saturday")),
+    (2, _("Sunday")),
+    (3, _("Monday")),
+    (4, _("Tuesday")),
+    (5, _("Wednesday")),
+    (6, _("Thursday")),
+    (7, _("Friday")),
+]
+
 
 class Biz(models.Model):
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200)
     description = models.TextField()
     address = models.CharField(max_length=255, blank=True)
@@ -10,5 +24,11 @@ class Biz(models.Model):
     phone = PhoneNumberField()
     gallery = models.ImageField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
-    hours = models.CharField(max_length=255, blank=True, null=True)
     location = models.PointField(blank=True, null=True)
+
+
+class Hours(models.Model):
+    biz = models.ForeignKey(Biz, on_delete=models.CASCADE)
+    weekday = models.IntegerField(choices=WEEKDAYS)
+    from_hour = models.TimeField()
+    to_hour = models.TimeField()
