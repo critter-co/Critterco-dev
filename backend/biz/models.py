@@ -32,3 +32,7 @@ class Hours(models.Model):
     weekday = models.IntegerField(choices=WEEKDAYS)
     from_hour = models.TimeField()
     to_hour = models.TimeField()
+
+    class Meta:
+        unique_together = ("biz", "weekday", "from_hour")
+
