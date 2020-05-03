@@ -6,4 +6,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("biz.urls")),
     path("token-auth/", obtain_jwt_token),
+    path("api/user/", include("user.urls")),
 ]

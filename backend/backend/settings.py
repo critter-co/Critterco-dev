@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     "django.contrib.gis",
     "corsheaders",
     "rest_framework",
+    "rest_framework.authtoken",
     "phonenumber_field",
     "core",
     "biz",
+    "user",
 ]
 
 MIDDLEWARE = [
