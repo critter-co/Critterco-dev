@@ -1,11 +1,16 @@
 from django.db import models
+from biz.models import Biz
+from django.contrib.auth.models import User
 
 
 class Comment(models.Model):
-    comment = models.TextField()
-    favourite = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, blank=True, related_name="user_favourite"
+    content = models.TextField()
+    biz = models.ForeignKey(Biz, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    reply = models.ForeignKey(
+        "Comment", null=True, related_name="replies", on_delete=models.CASCADE
     )
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.comment

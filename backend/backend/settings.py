@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "core",
     "biz",
     "user",
+    "comments",
 ]
 
 MIDDLEWARE = [
