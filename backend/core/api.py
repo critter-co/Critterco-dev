@@ -1,7 +1,7 @@
-from .models import Biz, Hours
+from biz.models import Biz, Hours
 from comments.models import Comment
 from rest_framework import viewsets, permissions
-from .serializers import BizSerializer, HoursSerializer
+from biz.serializers import BizSerializer, HoursSerializer
 from comments.serializers import CommentSerializer
 
 # Biz Viewset
