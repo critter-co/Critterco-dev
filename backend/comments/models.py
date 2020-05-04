@@ -1,6 +1,6 @@
 from django.db import models
 from biz.models import Biz
-from django.contrib.auth.models import User
+from core.models import User
 
 
 class Comment(models.Model):
