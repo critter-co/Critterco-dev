@@ -4,6 +4,7 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin,
 )
+from django.core.validators import RegexValidator
 
 
 class UserManager(BaseUserManager):
@@ -27,11 +28,21 @@ class UserManager(BaseUserManager):
         return user
 
 
+phone_regex = RegexValidator(
+    regex=r"^09\d{2}\d{7}$",
+    message="Phone number must be entered in the format: '09123456789'.",
+)
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     """Custom user model that support email, phonenumber, etc."""
 
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    phone = models.CharField(
+        validators=[phone_regex], max_length=11, null=True, blank=True
+    )
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
