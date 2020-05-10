@@ -30,7 +30,7 @@ class UserManager(BaseUserManager):
 
 phone_regex = RegexValidator(
     regex=r"^09\d{2}\d{7}$",
-    message="Phone number must be entered in the format: '09123456789'.",
+    message="Phone number must be entered in the following format: '09123456789'.",
 )
 
 

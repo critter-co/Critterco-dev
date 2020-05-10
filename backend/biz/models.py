@@ -17,7 +17,7 @@ WEEKDAYS = [
 
 phone2_regex = RegexValidator(
     regex=r"^0\d{2}\d{8}$",
-    message="Phone number must be entered in the format: '02112345678'.",
+    message="Phone number must be entered in the following format: '02112345678'.",
 )
 
 
