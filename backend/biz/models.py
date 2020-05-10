@@ -25,6 +25,11 @@ instagram_regex = RegexValidator(
     message="Please enter a valid Instagram ID.",
 )
 
+telegram_regex = RegexValidator(
+    regex=r"^(?:(?:http|https):\/\/)?(?:www\.)?(?:telegram\.me|t\.me|telegram.dog)\/([A-Za-z0-9-_\.]+)$",
+    message="Please enter a valid Telegram ID.",
+)
+
 
 class Biz(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -34,7 +39,7 @@ class Biz(models.Model):
     city = models.CharField(max_length=100)
     phone = PhoneNumberField()
     phone2 = models.CharField(
-        validators=[phone2_regex], max_length=11, null=True, blank=True
+        validators=[phone2_regex], max_length=17, null=True, blank=True
     )
     gallery = models.ImageField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -42,6 +47,9 @@ class Biz(models.Model):
     website = models.URLField(max_length=50, blank=True, null=True)
     instagram = models.CharField(
         validators=[instagram_regex], max_length=255, blank=True, null=True
+    )
+    telegram = models.CharField(
+        validators=[telegram_regex], max_length=255, blank=True, null=True
     )
 
 
