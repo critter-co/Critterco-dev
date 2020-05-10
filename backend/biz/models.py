@@ -20,6 +20,11 @@ phone2_regex = RegexValidator(
     message="Phone number must be entered in the following format: '02112345678'.",
 )
 
+instagram_regex = RegexValidator(
+    regex=r"^(?:(?:http|https):\/\/)?(?:www\.)?(?:instagram\.com|instagr\.am)\/([A-Za-z0-9-_\.]+)",
+    message="Please enter a valid Instagram ID.",
+)
+
 
 class Biz(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -34,6 +39,10 @@ class Biz(models.Model):
     gallery = models.ImageField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     location = models.PointField(blank=True, null=True)
+    website = models.URLField(max_length=50, blank=True, null=True)
+    instagram = models.CharField(
+        validators=[instagram_regex], max_length=255, blank=True, null=True
+    )
 
 
 class Hours(models.Model):

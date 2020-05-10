@@ -14,6 +14,8 @@ class BizAdmin(OSMGeoAdmin):
         "phone",
         "gallery",
         "created",
+        "website",
+        "instagram",
     )
 
 
