@@ -10,6 +10,9 @@ class UsersAdmin(admin.ModelAdmin):
         "username",
         "is_active",
         "is_staff",
+        "phone",
+        "last_name",
+        "member_since",
     )
 
 
