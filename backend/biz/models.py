@@ -4,6 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.gis.db import models
 from django.utils.translation import ugettext as _
 from django.core.validators import RegexValidator
+from core.models import User
 
 WEEKDAYS = [
     (1, _("Saturday")),
@@ -50,6 +51,10 @@ class Biz(models.Model):
     )
     telegram = models.CharField(
         validators=[telegram_regex], max_length=255, blank=True, null=True
+    )
+    is_claimed = models.BooleanField(default=False)
+    claimed_by = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, blank=True, default=None
     )
 
 

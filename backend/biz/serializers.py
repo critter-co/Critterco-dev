@@ -6,7 +6,7 @@ class BizSerializer(serializers.ModelSerializer):
     class Meta:
         model = Biz
         fields = "__all__"
-        read_only_fields = ["id", "created", "created_by"]
+        read_only_fields = ["id", "created", "created_by", "is_claimed", "claimed_by"]
 
 
 class HoursSerializer(serializers.ModelSerializer):
@@ -16,4 +16,3 @@ class HoursSerializer(serializers.ModelSerializer):
         read_only_fields = [
             "id",
         ]
-

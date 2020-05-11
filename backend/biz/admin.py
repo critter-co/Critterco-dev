@@ -16,6 +16,8 @@ class BizAdmin(OSMGeoAdmin):
         "created",
         "website",
         "instagram",
+        "is_claimed",
+        "claimed_by",
     )
 
 
