@@ -66,3 +66,5 @@ class Hours(models.Model):
 
     class Meta:
         unique_together = ("biz", "weekday", "from_hour")
+        verbose_name = _("Hour")
+        verbose_name_plural = _("Hours")
