@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
+    "django_rest_passwordreset",
     "phonenumber_field",
     "core",
     "biz",
