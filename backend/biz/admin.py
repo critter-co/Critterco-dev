@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.gis.admin import OSMGeoAdmin
-from .models import Biz
+from .models import Biz, Hours
 
 
 @admin.register(Biz)
@@ -14,5 +14,13 @@ class BizAdmin(OSMGeoAdmin):
         "phone",
         "gallery",
         "created",
-        "hours",
+        "website",
+        "instagram",
+        "is_claimed",
+        "claimed_by",
     )
+
+
+@admin.register(Hours)
+class HoursAdmin(OSMGeoAdmin):
+    list_display = ("id", "weekday", "to_hour")
