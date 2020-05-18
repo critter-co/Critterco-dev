@@ -1,6 +1,6 @@
 from biz.models import Biz, Hours
 from comments.models import Comment
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, authentication
 from biz.serializers import BizSerializer, HoursSerializer
 from comments.serializers import CommentSerializer
 
@@ -21,5 +21,9 @@ class HoursViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
-    permission_classes = [permissions.AllowAny]
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = CommentSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
