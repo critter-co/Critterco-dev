@@ -22,6 +22,14 @@ class UserSerializer(serializers.ModelSerializer):
 
         extra_kwargs = {"password": {"write_only": True, "min_length": 5}}
 
+    def get_full_name(self):
+        """Gets full name of user"""
+        return "%s %s" % (self.name, self.last_name)
+
+    def get_short_name(self):
+        """Gets user's first name"""
+        return self.name
+
     def create(self, validated_data):
         """Create a new user with encrypted password and return it"""
         return get_user_model().objects.create_user(**validated_data)
