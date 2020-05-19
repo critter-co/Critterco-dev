@@ -15,9 +15,7 @@ class BizViewSet(viewsets.ModelViewSet):
     required_groups = {
         "GET": ["__all__"],
         "POST": ["biz_post"],
-        "PUT": ["biz_moderator"],
-        "PATCH": ["biz_moderator"],
-        "DELETE": ["admin"],
+        "PUT": ["__all__"],
     }
 
     serializer_class = BizSerializer

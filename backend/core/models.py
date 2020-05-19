@@ -50,4 +50,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     username = models.CharField(max_length=50, null=True, blank=True, unique=True)
     USERNAME_FIELD = "email"
-    groups = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, null=True)
+    groups = models.ManyToManyField(Group,)
