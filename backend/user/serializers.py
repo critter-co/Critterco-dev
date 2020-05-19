@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model, authenticate
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
+from django.contrib.auth.models import Group
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -35,7 +36,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create a new user with encrypted password and return it"""
-        return get_user_model().objects.create_user(**validated_data)
+        member_group = Group.objects.get(name="member")
+        user = get_user_model().objects.create(**validated_data)
+        member_group.user_set.add(user)
+        return user
 
     def update(self, instance, validated_data):
         """Update a user, settin the password correctly and return it"""
