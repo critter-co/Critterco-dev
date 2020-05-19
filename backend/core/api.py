@@ -3,13 +3,21 @@ from comments.models import Comment
 from rest_framework import viewsets, permissions, authentication
 from biz.serializers import BizSerializer, HoursSerializer
 from comments.serializers import CommentSerializer
+from biz.permissions import HasGroupPermission
 
 # Biz Viewset
 
 
 class BizViewSet(viewsets.ModelViewSet):
     queryset = Biz.objects.all()
-    permission_classes = [permissions.AllowAny]
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [HasGroupPermission]
+    required_groups = {
+        "GET": ["__all__"],
+        "POST": ["biz_post"],
+        "PUT": ["biz_moderator"],
+    }
+
     serializer_class = BizSerializer
 
 

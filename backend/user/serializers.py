@@ -17,8 +17,9 @@ class UserSerializer(serializers.ModelSerializer):
             "is_staff",
             "phone",
             "member_since",
+            "groups",
         )
-        read_only_fields = ["id", "is_staff"]
+        read_only_fields = ["id", "is_staff", "groups"]
 
         extra_kwargs = {"password": {"write_only": True, "min_length": 5}}
 
