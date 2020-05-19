@@ -14,8 +14,9 @@ class BizViewSet(viewsets.ModelViewSet):
     permission_classes = [HasGroupPermission]
     required_groups = {
         "GET": ["__all__"],
-        "POST": ["biz_post"],
-        "PUT": ["__all__"],
+        "POST": ["member"],
+        "PUT": ["member", "biz_edit"],
+        "PATCH": ["member", "biz_edit"],
     }
 
     serializer_class = BizSerializer
