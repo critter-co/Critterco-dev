@@ -4,6 +4,7 @@ from rest_framework import viewsets, permissions, authentication
 from biz.serializers import BizSerializer, HoursSerializer
 from comments.serializers import CommentSerializer
 from biz.permissions import HasGroupPermission
+from rest_framework.permissions import DjangoModelPermissions
 
 # Biz Viewset
 
@@ -13,11 +14,16 @@ class BizViewSet(viewsets.ModelViewSet):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = [HasGroupPermission]
     required_groups = {
-        "GET": ["__all__"],
-        "POST": ["member", "biz_post"],
-        "PUT": ["member", "biz_edit"],
-        "PATCH": ["member", "biz_edit"],
+        "list": ["__all__"],
+        "create": ["member", "biz_post"],
+        "upate": ["member", "biz_edit"],
+        "partial_update": ["member", "biz_edit"],
+        "destroy": ["member", "admin"],
     }
+
+    def partial_update(self, request, *args, **kwargs):
+        kwargs["partial"] = True
+        return self.update(request, *args, **kwargs)
 
     serializer_class = BizSerializer
 

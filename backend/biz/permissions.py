@@ -22,7 +22,7 @@ class HasGroupPermission(permissions.BasePermission):
         required_groups_mapping = getattr(view, "required_groups", {})
 
         # Determine the required groups for this particular request method.
-        required_groups = required_groups_mapping.get(request.method, [])
+        required_groups = required_groups_mapping.get(view.action, [])
 
         # Return True if the user has all the required groups or is staff.
         return all(
