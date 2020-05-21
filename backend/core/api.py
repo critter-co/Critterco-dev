@@ -30,7 +30,20 @@ class BizViewSet(viewsets.ModelViewSet):
 
 class HoursViewSet(viewsets.ModelViewSet):
     queryset = Hours.objects.all()
-    permission_classes = [permissions.AllowAny]
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = [HasGroupPermission]
+    required_groups = {
+        "list": ["__all__"],
+        "create": ["member"],
+        "upate": ["member"],
+        "partial_update": ["member"],
+        "destroy": ["member", "admin"],
+    }
+
+    def partial_update(self, request, *args, **kwargs):
+        kwargs["partial"] = True
+        return self.update(request, *args, **kwargs)
+
     serializer_class = HoursSerializer
 
 
