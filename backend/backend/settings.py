@@ -82,7 +82,7 @@ REST_FRAMEWORK = {
 
 ROOT_URLCONF = "backend.urls"
 
-CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)
+CORS_ORIGIN_WHITELIST = ("http://localhost:8080",)
 
 INTERNAL_IPS = [
     # ...
