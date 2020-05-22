@@ -1,4 +1,4 @@
-# code
+# frontend
 
 ## Project setup
 ```
@@ -25,18 +25,5 @@ npm run test
 npm run lint
 ```
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-Note: This Vue project was generated using `@vue/cli` from the following Dockerfile: 
-
-```
-FROM node:9.11.1-alpine
-```
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -1,18 +1,16 @@
-FROM node:9.11.1-alpine
+# base image
+FROM node:12.2.0-alpine
 
-# make the 'app' folder the current working directory
-WORKDIR /app/
+# set working directory
+WORKDIR /app
 
-COPY package.json ./
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npm cache verify
-
-# install project dependencies
+# install and cache app dependencies
+COPY package.json /app/package.json
 RUN npm install
+RUN npm install @vue/cli@3.7.0 -g
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY . .
-
-EXPOSE 8080
-
+# start app
 CMD ["npm", "run", "serve"]

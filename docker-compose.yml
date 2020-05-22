@@ -41,16 +41,16 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
 
   frontend:
+    container_name: frontend
     build:
-      context: ./frontend/
-    command: npm run serve
+      context: ./frontend
     volumes:
-      - ./frontend/:/usr/app
-      - /usr/app/node_modules
+      - ./frontend:/app
+      - "/app/node_modules"
+    ports:
+      - "8081:8080"
     depends_on:
       - backend
-    ports:
-      - "8080:8080"
 
 volumes:
   postgis_data: {}
