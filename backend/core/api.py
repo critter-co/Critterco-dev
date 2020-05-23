@@ -50,8 +50,20 @@ class HoursViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [HasGroupPermission]
+    required_groups = {
+        "list": ["__all__"],
+        "create": ["member"],
+        "upate": ["member"],
+        "partial_update": ["member"],
+        "destroy": ["member", "admin"],
+    }
+
     serializer_class = CommentSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def partial_update(self, request, *args, **kwargs):
+        kwargs["partial"] = True
+        return self.update(request, *args, **kwargs)
