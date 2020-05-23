@@ -30,7 +30,6 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
   pgadmin:
     image: dpage/pgadmin4
-    restart: always
     depends_on:
       - db
     ports:
@@ -52,5 +51,17 @@ services:
     depends_on:
       - backend
 
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    restart: always
+    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - C:\ProgramData\Portainer:/data
+
 volumes:
+  portainer_data:
   postgis_data: {}
