@@ -74,8 +74,8 @@ class CommentViewSet(viewsets.ModelViewSet):
             msg = _("You can't edit other users' comments.")
             raise serializers.ValidationError(msg, code="authentication")
 
-    def update(
-        self, request, pk=None,
-    ):
-        msg2 = _("PUT method not allowed.")
-        raise serializers.ValidationError(msg2, code="notAllowed")
+    # def update(
+    #     self, request, pk=None,
+    # ):
+    #     msg2 = _("PUT method not allowed.")
+    #     raise serializers.ValidationError(msg2, code="notAllowed")
