@@ -1,10 +1,11 @@
 from biz.models import Biz, Hours
 from comments.models import Comment
-from rest_framework import viewsets, permissions, authentication
+from rest_framework import viewsets, permissions, authentication, serializers
 from biz.serializers import BizSerializer, HoursSerializer
 from comments.serializers import CommentSerializer
 from biz.permissions import HasGroupPermission
 from rest_framework.permissions import DjangoModelPermissions
+from django.utils.translation import ugettext_lazy as _
 
 # Biz Viewset
 
@@ -54,7 +55,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     required_groups = {
         "list": ["__all__"],
         "create": ["member"],
-        "upate": ["member"],
+        "upate": ["member", "admin"],
         "partial_update": ["member"],
         "destroy": ["member", "admin"],
     }
@@ -66,4 +67,15 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def partial_update(self, request, *args, **kwargs):
         kwargs["partial"] = True
-        return self.update(request, *args, **kwargs)
+        comment = self.get_object()
+        if self.request.user == comment.user:
+            return self.update(request, *args, **kwargs)
+        else:
+            msg = _("You can't edit other users' comments.")
+            raise serializers.ValidationError(msg, code="authentication")
+
+    def update(
+        self, request, pk=None,
+    ):
+        msg2 = _("PUT method not allowed.")
+        raise serializers.ValidationError(msg2, code="notAllowed")
