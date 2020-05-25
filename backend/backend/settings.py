@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
+    "rest_framework_gis",
     "django_rest_passwordreset",
     "phonenumber_field",
     "core",
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     "user",
     "comments",
     "debug_toolbar",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
