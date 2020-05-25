@@ -55,7 +55,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     required_groups = {
         "list": ["__all__"],
         "create": ["member"],
-        "upate": ["member", "admin"],
+        "update": ["member", "admin"],
         "partial_update": ["member"],
         "destroy": ["member", "admin"],
     }
@@ -73,9 +73,3 @@ class CommentViewSet(viewsets.ModelViewSet):
         else:
             msg = _("You can't edit other users' comments.")
             raise serializers.ValidationError(msg, code="authentication")
-
-    # def update(
-    #     self, request, pk=None,
-    # ):
-    #     msg2 = _("PUT method not allowed.")
-    #     raise serializers.ValidationError(msg2, code="notAllowed")
