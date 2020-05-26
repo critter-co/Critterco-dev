@@ -17,9 +17,11 @@ RUN echo deb http://deb.debian.org/debian testing main contrib non-free >> /etc/
 ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
 ENV C_INCLUDE_PATH=/usr/include/gdal
 
+RUN apt-get install tzdata
 ENV LC_ALL="C.UTF-8"
 ENV LC_CTYPE="C.UTF-8"
-
+ENV TZ=Asia/Tehran
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
@@ -33,3 +35,5 @@ RUN mkdir /backend
 WORKDIR /backend
 COPY ./backend /backend
 
+RUN echo "Asia/Tehran" > /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata

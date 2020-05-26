@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Tehran"
 
 USE_I18N = True
 
@@ -122,10 +122,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-# ------------ Third party packages' settings -------------- #
-
 # Custom user model to be used by Django.
 AUTH_USER_MODEL = "core.user"
+# ------------ Third party packages' settings -------------- #
 
 # Debug toolbar settings.
 DEBUG_TOOLBAR_CONFIG = {
