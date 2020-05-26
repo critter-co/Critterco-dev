@@ -5,7 +5,8 @@ from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("core.urls")),
+    path("", include("biz.urls")),
+    path("", include("comments.urls")),
     path("api/user/", include("user.urls")),
     url(
         r"^api/password_reset/",
@@ -17,4 +18,3 @@ if settings.DEBUG:
     import debug_toolbar
 
     urlpatterns = [path("__debug__/", include(debug_toolbar.urls)),] + urlpatterns
-
