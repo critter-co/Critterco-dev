@@ -1,9 +1,9 @@
-from comments.models import Comment
-from rest_framework import viewsets, permissions, authentication, serializers
-from comments.serializers import CommentSerializer
-from biz.permissions import HasGroupPermission
-from rest_framework.permissions import DjangoModelPermissions
 from django.utils.translation import ugettext_lazy as _
+from rest_framework import viewsets, permissions, authentication, serializers
+from rest_framework.permissions import DjangoModelPermissions
+from .models import Comment
+from .serializers import CommentSerializer
+from biz.permissions import HasGroupPermission
 
 # Comment serializer views.
 class CommentViewSet(viewsets.ModelViewSet):

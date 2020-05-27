@@ -1,11 +1,10 @@
-from django.shortcuts import render
-from biz.models import Biz, Hours
-from rest_framework import viewsets, permissions, authentication, serializers
-from biz.serializers import BizSerializer, HoursSerializer
-from biz.permissions import HasGroupPermission
-from rest_framework.permissions import DjangoModelPermissions
 from django.utils.translation import ugettext_lazy as _
+from rest_framework import viewsets, permissions, authentication, serializers
+from rest_framework.permissions import DjangoModelPermissions
 from rest_framework_gis.filters import DistanceToPointFilter
+from .models import Biz, Hours
+from .permissions import HasGroupPermission
+from .serializers import BizSerializer, HoursSerializer
 
 # Biz serializer views.
 class BizViewSet(viewsets.ModelViewSet):
