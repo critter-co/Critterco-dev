@@ -9,10 +9,7 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/backend
-    command: >
-      sh -c " python manage.py wait_for_db &&
-              python manage.py migrate &&
-              python manage.py runserver 0.0.0.0:8000"
+    command: ["./wait-for-it.sh", "db:5432", "--", "./start-up.sh"]
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${POSTGRES_DB}
