@@ -9,5 +9,6 @@ Temporary repository for Critter app development.
 - Handle user profile management functions (logout, edit info, etc.)
 - Add user profile template based on user profile management functions.
 - Add a map API for nearby businesses/services viewing.
-- Load data from biz API to map filtered by location according to API search queries.
+- Load data from biz API to map.
+- filter businesses/services by location according to API search queries.
 
