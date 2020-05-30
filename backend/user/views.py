@@ -22,7 +22,8 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
     """Manage the authenticated user"""
 
     serializer_class = UserSerializer
-    authentication_classes = (authentication.TokenAuthentication,)
+    # authentication_classes = (authentication.TokenAuthentication,) /
+    # Commented above live due to issues with simple-jwt package.
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_object(self):

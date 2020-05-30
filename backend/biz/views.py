@@ -12,7 +12,8 @@ class BizViewSet(viewsets.ModelViewSet):
     distance_filter_field = "location"
     distance_filter_convert_meters = True
     filter_backends = (DistanceToPointFilter,)
-    authentication_classes = (authentication.TokenAuthentication,)
+    # authentication_classes = (authentication.TokenAuthentication,) /
+    # Commented above live due to issues with simple-jwt package.
     permission_classes = [HasGroupPermission]
     required_groups = {
         "list": ["__all__"],
@@ -32,7 +33,8 @@ class BizViewSet(viewsets.ModelViewSet):
 # Hours serializer views.
 class HoursViewSet(viewsets.ModelViewSet):
     queryset = Hours.objects.all()
-    authentication_classes = (authentication.TokenAuthentication,)
+    # authentication_classes = (authentication.TokenAuthentication,) /
+    # Commented above live due to issues with simple-jwt package.
     permission_classes = [HasGroupPermission]
     required_groups = {
         "list": ["__all__"],
