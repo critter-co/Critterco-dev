@@ -12,3 +12,14 @@ Temporary repository for Critter app development.
 - Load data from biz API to map.
 - filter businesses/services by location according to API search queries.
 
+### Backend requirements.
+- Add a consistant test method or library (such as pytest, paramteraized.)
+- Implement flake8, and configure it for needed files; fix linting errors.
+- Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
+- Add automated password reset via email through Celery.
+
+### Build (or Docker) requirements.
+- Fix the error with pgadmin (not working after adding nginx.)
+- Add Celery for asynchronous backend tasks.
+- Add Redis for caching.
+- Replace nginx with Traefik if it offers better solution for https and certs.
