@@ -28,7 +28,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         bizs = Biz.objects.all()
         if not bizs:
-            for i in range(100):
+            for i in range(1000):
                 biz = BizFactory()
                 biz.save()
             print("Created posts")
