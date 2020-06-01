@@ -37,6 +37,13 @@ services:
     volumes:
       - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
 
+  redis:
+    restart: always
+    image: redis:6.0.4-alpine
+    expose:
+      - "6379"
+
+
   frontend:
     container_name: frontend
     build:

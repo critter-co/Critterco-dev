@@ -13,3 +13,6 @@ django-filter>=2.2.0,<2.3.0
 gunicorn>=20.0.4,<20.1.0
 djangorestframework-simplejwt>=4.4.0,<4.5.0
 factory_boy
+redis>=3.5.2,<3.6.0
+django-redis>=4.12.1,<4.13.0
+django-silk
