@@ -56,6 +56,18 @@ services:
     depends_on:
       - backend
       
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      - REDIS_HOST=redis
+    ports:
+      - "8085:8081"
+    depends_on:
+          - "redis"
+    
   # pgadmin:
   #   image: dpage/pgadmin4
   #   depends_on:
