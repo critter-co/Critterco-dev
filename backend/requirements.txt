@@ -16,3 +16,4 @@ factory_boy
 redis>=3.5.2,<3.6.0
 django-redis>=4.12.1,<4.13.0
 django-silk
+drf-extensions==0.6.0
