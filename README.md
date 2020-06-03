@@ -17,9 +17,10 @@ Temporary repository for Critter app development.
 - Implement flake8, and configure it for needed files; fix linting errors.
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
 - Add automated password reset via email through Celery.
+- [DONE] Configure django's setting to cache biz queries via Redis.
 
 ### Build (or Docker) requirements.
 - Fix the error with pgadmin (not working after adding nginx.)
 - Add Celery for asynchronous backend tasks.
-- Add Redis for caching.
-- Replace nginx with Traefik if it offers better solution for https and certs.
+- [DONE] Add Redis for caching.
+- [FAILED] Replace nginx with Traefik if it offers better solution for https and certs.
