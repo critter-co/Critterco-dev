@@ -14,7 +14,7 @@ Temporary repository for Critter app development.
 
 ### Backend requirements.
 - Add a consistant test method or library (such as pytest, paramteraized.)
-- Implement flake8, and configure it for needed files; fix linting errors.
+- [DONE] Implement flake8, and configure it for needed files; fix linting errors.
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
 - Add automated password reset via email through Celery.
 - [DONE] Configure django's setting to cache biz queries via Redis.
