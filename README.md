@@ -21,5 +21,5 @@ Temporary repository for Critter app development.
 ### Build (or Docker) requirements.
 - Fix the error with pgadmin (not working after adding nginx.)
 - Add Celery for asynchronous backend tasks.
-- Add Redis for caching.
+- [DONE] Add Redis for caching.
 - Replace nginx with Traefik if it offers better solution for https and certs.
