@@ -1,12 +1,14 @@
 from django.utils.translation import ugettext_lazy as _
-from rest_framework import viewsets, permissions, authentication, serializers
-from rest_framework.permissions import DjangoModelPermissions
+from rest_framework import viewsets, serializers
 from .models import Comment
 from .serializers import CommentSerializer
 from biz.permissions import HasGroupPermission
 
 # Comment serializer views.
+
+
 class CommentViewSet(viewsets.ModelViewSet):
+
     queryset = Comment.objects.all()
     # authentication_classes = (authentication.TokenAuthentication,) /
     # Commented above live due to issues with simple-jwt package.

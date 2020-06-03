@@ -24,12 +24,12 @@ class UserManager(BaseUserManager):
         user = self.create_user(email, password)
         user.is_staff = True
         user.is_superuser = True
-        # Checks if admin group exists, creates if not, and adds user.
+        # Checks if admin group exists, creates if not, and then adds user.
         Group.objects.get_or_create(name="admin")
         admin_group = Group.objects.get(name="admin")
         admin_group.user_set.add(user)
-        # Checks if member group exists, creates if not, and adds user.
-        member_check = Group.objects.get_or_create(name="member")
+        # Checks if member group exists, creates if not, and then adds user.
+        member_check = Group.objects.get_or_create(name="member")  # noqa: F841
         member_group = Group.objects.get(name="member")
         member_group.user_set.add(user)
         user.save(using=self._db)

@@ -36,7 +36,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create a new user with encrypted password and return it"""
-        member_check = Group.objects.get_or_create(name="member")
+        member_check = Group.objects.get_or_create(name="member")  # noqa: F841
         member_group = Group.objects.get(name="member")
         user = get_user_model().objects.create(**validated_data)
         user.set_password(validated_data["password"])
