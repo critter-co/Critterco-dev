@@ -15,7 +15,7 @@ Temporary repository for Critter app development.
 ### Backend requirements.
 - [DONE] Add a consistant test method or library (such as pytest, paramteraized.).
 - Cover tests for existing functions (achieve +90% test/code coverage).
-- ][DONE]](https://github.com/critter-co/critterco-dev/commit/5104dc88efedbc58d2c954445517cb1f6bfd8286) Implement flake8, and configure it for needed files; fix linting errors.
+- [[DONE]](https://github.com/critter-co/critterco-dev/commit/5104dc88efedbc58d2c954445517cb1f6bfd8286) Implement flake8, and configure it for needed files; fix linting errors.
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
 - Add automated password reset via email through Celery.
 - [[DONE]](https://github.com/critter-co/critterco-dev/commit/5037049df12288ce1722da5c04a060c7ea2b1bcd) Configure django's setting to cache biz queries via Redis.
