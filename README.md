@@ -13,7 +13,7 @@ Temporary repository for Critter app development.
 - filter businesses/services by location according to API search queries.
 
 ### Backend requirements.
-- Add a consistant test method or library (such as pytest, paramteraized.).
+- [DONE] Add a consistant test method or library (such as pytest, paramteraized.).
 - Cover tests for existing functions (achieve +90% test/code coverage).
 - [DONE] Implement flake8, and configure it for needed files; fix linting errors.
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
