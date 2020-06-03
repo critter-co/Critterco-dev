@@ -23,4 +23,4 @@ Temporary repository for Critter app development.
 - Fix the error with pgadmin (not working after adding nginx.)
 - Add Celery for asynchronous backend tasks.
 - [DONE] Add Redis for caching.
-- Replace nginx with Traefik if it offers better solution for https and certs.
+- [FAILED] Replace nginx with Traefik if it offers better solution for https and certs.
