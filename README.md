@@ -13,15 +13,15 @@ Temporary repository for Critter app development.
 - filter businesses/services by location according to API search queries.
 
 ### Backend requirements.
-- Add a consistant test method or library (such as pytest, paramteraized.).
+- [DONE] Add a consistant test method or library (such as pytest, paramteraized.).
 - Cover tests for existing functions (achieve +90% test/code coverage).
-- [DONE] Implement flake8, and configure it for needed files; fix linting errors.
+- [[DONE]](https://github.com/critter-co/critterco-dev/commit/5104dc88efedbc58d2c954445517cb1f6bfd8286) Implement flake8, and configure it for needed files; fix linting errors.
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
 - Add automated password reset via email through Celery.
-- [DONE] Configure django's setting to cache biz queries via Redis.
+- [[DONE]](https://github.com/critter-co/critterco-dev/commit/5037049df12288ce1722da5c04a060c7ea2b1bcd) Configure django's setting to cache biz queries via Redis.
 
 ### Build (or Docker) requirements.
 - Fix the error with pgadmin (not working after adding nginx.).
 - Add Celery for asynchronous backend tasks.
-- [DONE] Add Redis for caching.
+- [[DONE]](https://github.com/critter-co/critterco-dev/commit/96b7ae7bbb325af4a3b4e5b0c83ea477b8dabb51) Add Redis for caching.
 - [FAILED] Replace nginx with Traefik if it offers better solution for https and certs.
