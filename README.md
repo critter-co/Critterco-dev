@@ -19,6 +19,8 @@ Temporary repository for Critter app development.
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
 - Add automated password reset via email through Celery.
 - [[DONE]](https://github.com/critter-co/critterco-dev/commit/5037049df12288ce1722da5c04a060c7ea2b1bcd "Fixing commit") Configure django's setting to cache biz queries via Redis.
+- Move all django apps to an "apps" folder for a cleaner environment.
+- Move all scripts to a "scripts" folder.
 
 ### Build (or Docker) requirements.
 - Fix the error with pgadmin (not working after adding nginx.).
