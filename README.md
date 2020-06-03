@@ -13,7 +13,7 @@ Temporary repository for Critter app development.
 - filter businesses/services by location according to API search queries.
 
 ### Backend requirements.
-- [DONE] Add a consistant test method or library (such as pytest, paramteraized.).
+- [DONE](https://github.com/critter-co/critterco-dev/commit/4095c7526588ea001ab4677c7efde27e456970d8) Add a consistant test method or library (such as pytest, paramteraized.).
 - Cover tests for existing functions (achieve +90% test/code coverage).
 - [[DONE]](https://github.com/critter-co/critterco-dev/commit/5104dc88efedbc58d2c954445517cb1f6bfd8286) Implement flake8, and configure it for needed files; fix linting errors.
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
