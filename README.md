@@ -17,6 +17,7 @@ Temporary repository for Critter app development.
 - Implement flake8, and configure it for needed files; fix linting errors.
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
 - Add automated password reset via email through Celery.
+- [DONE] Configure django's setting to cache biz queries via Redis.
 
 ### Build (or Docker) requirements.
 - Fix the error with pgadmin (not working after adding nginx.)
