@@ -9,7 +9,7 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/backend
-    command: ["./wait-for-it.sh", "db:5432", "--", "./start-up.sh"]
+    command: ["./scripts/wait-for-it.sh", "db:5432", "--", "./scripts/start-up.sh"]
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${POSTGRES_DB}
