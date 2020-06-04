@@ -35,25 +35,24 @@ class Biz(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200)
     description = models.TextField()
-    address = models.CharField(max_length=255, blank=True)
+    address = models.CharField(max_length=255, default='')
     city = models.CharField(max_length=100)
     phone = PhoneNumberField()
     phone2 = models.CharField(
-        validators=[phone2_regex], max_length=17, null=True, blank=True
-    )
-    gallery = models.ImageField(blank=True, null=True)
+        validators=[phone2_regex], max_length=17, default='')
+    gallery = models.ImageField(default='')
     created = models.DateTimeField(auto_now_add=True)
     location = models.PointField(blank=True, null=True)
-    website = models.URLField(max_length=50, blank=True, null=True)
+    website = models.URLField(max_length=50, default='')
     instagram = models.CharField(
-        validators=[instagram_regex], max_length=255, blank=True, null=True
+        validators=[instagram_regex], max_length=255, default=''
     )
     telegram = models.CharField(
-        validators=[telegram_regex], max_length=255, blank=True, null=True
+        validators=[telegram_regex], max_length=255, default=''
     )
     is_claimed = models.BooleanField(default=False)
     claimed_by = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, blank=True, default=None
+        User, on_delete=models.SET_NULL, null=True, blank=True
     )
 
 
