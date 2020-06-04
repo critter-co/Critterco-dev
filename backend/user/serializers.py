@@ -1,5 +1,4 @@
-from django.contrib.auth import get_user_model, authenticate
-from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from django.contrib.auth.models import Group
 
@@ -26,13 +25,13 @@ class UserSerializer(serializers.ModelSerializer):
 
         extra_kwargs = {"password": {"write_only": True, "min_length": 5}}
 
-    def get_full_name(self):
-        """Gets full name of user"""
-        return "%s %s" % (self.name, self.last_name)
-
-    def get_short_name(self):
-        """Gets user's first name"""
-        return self.name
+    # def get_full_name(self):
+    #     """Gets full name of user"""
+    #     return "%s %s" % (self.name, self.last_name)
+    # These two functions must be tested and rewritten.
+    # def get_short_name(self):
+    #     """Gets user's first name"""
+    #     return self.name
 
     def create(self, validated_data):
         """Create a new user with encrypted password and return it"""

@@ -2,8 +2,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.test import TestCase
 from django.urls import reverse
-from rest_framework.test import APIClient, APITestCase, force_authenticate
-from rest_framework import status
+from rest_framework.test import APIClient
+from rest_framework import status  # noqa: F401
 from core.permissions import is_in_group
 
 CREATE_USER_URL = reverse('user:create')
@@ -61,5 +61,3 @@ class PermissionsTests(TestCase):
         user = get_user_model().objects.get(**res.data)
         check_group = is_in_group(user, "member")
         self.assertTrue(check_group)
-        
-            
