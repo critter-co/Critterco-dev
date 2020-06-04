@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient, APITestCase, force_authenticate
@@ -32,6 +33,18 @@ class PublicUserApiTests(TestCase):
         user = get_user_model().objects.get(**res.data)
         self.assertTrue(user.check_password(payload['password']))
         self.assertNotIn('password', res.data)
+
+    def test_created_user_is_member(self):
+        """Test that when user is created they're added to member Group"""
+        payload = {
+            'email': 'foo@test.com',
+            'password': 'testpassword',
+            'name': 'Test name'
+        }
+        res = self.client.post(CREATE_USER_URL, payload)
+        user = get_user_model().objects.get(**res.data)
+        member_group = Group.objects.get(name="member").user_set.filter(id=user.id).exists()
+        self.assertTrue(member_group)
 
     def test_user_exists(self):
         """Test creating a user that already exists fails."""
