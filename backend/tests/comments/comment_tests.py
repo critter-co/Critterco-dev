@@ -123,3 +123,7 @@ class TestPatchComments(TestCase):
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
         new_comment = Comment.objects.latest('id').content
         self.assertEqual(new_comment, 'ORIGINAL')
+
+    def test_comment_str(self):
+        comment = Comment.objects.create(content='Test Comment')
+        self.assertEqual(str(comment), 'Test Comment')
