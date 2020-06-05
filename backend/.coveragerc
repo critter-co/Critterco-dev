@@ -1,6 +1,6 @@
 [run]
 omit =
     backend/*
-    accounts/apps.py
     manage.py
     ../*migrations*
+    tests/*
