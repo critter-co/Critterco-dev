@@ -9,6 +9,3 @@ before_script: pip install docker-compose
 
 script:
     - docker-compose run backend sh -c "coverage run -m pytest ./tests/ && flake8"
-
-after_success:
-    - codecov
