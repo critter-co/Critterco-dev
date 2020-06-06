@@ -1,5 +1,6 @@
+https://travis-ci.com/critter-co/critterco-dev.svg?branch=master&status=canceled
 # Critter 
-Temporary repository for Critter app development.
+Temporary repository for Critter app development. 
 
 ## Phase A
 
