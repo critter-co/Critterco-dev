@@ -65,6 +65,19 @@ class TestBizModel(TestCase):
         res = self.client.post(BIZ_URL, payload)
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
 
+    def test_biz_not_loggedin(self):
+        """Test that a user who is not logged in can NOT post biz"""
+        self.client.credentials()
+        payload = {
+            "title": "test",
+            "description": "test",
+            "address": "test",
+            "city": "test",
+            "phone": "+989123456789"
+        }
+        res = self.client.post(BIZ_URL, payload)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
     def test_biz_edit_authorized(self):
         """Test that users in biz_edit group can edit biz infos"""
         payload = {
