@@ -2,6 +2,21 @@
 # Critter 
 Temporary repository for Critter app development. 
 
+## Working on the project.
+
+## Software Requirements.
+- Docker > v19.03
+
+### How to run the app.
+- Make sure Docker engine is running.
+- [For Linux] Make sure you can run sudo commands or your user is in docker group, and you have docker-compose installed.
+- Open a terminal and navigate to project directory where "docker-compose.yml" file resides.
+- Run ```docker-compose up --build```; wait for docker to download and build images.
+- You can access API endpoint at "localhost/api/", and frontend at "localhost".
+- Portainer is accessible at "localhost:9000". Make sure you create an admin account before 5 minutes or container stops.
+- Redis-commander is accessible at "localhost:8085" for monitoring redis caches.
+- Endpoint documentation will be added at a later date here (most probably Postman Documenting).
+
 ## Phase A
 
 ### Frontend requirements.
