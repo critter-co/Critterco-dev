@@ -2,10 +2,10 @@
 # Critter 
 Temporary repository for Critter app development. 
 
-## Working on the project.
-
 ## Software Requirements.
 - Docker > v19.03
+
+## Working on the project.
 
 ### How to run the app.
 - Make sure Docker engine is running.
