@@ -63,7 +63,7 @@ class TestPatchComments(TestCase):
         payload = {
             'content': 'Test 1'
         }
-        res = self.client.post(COMMENT_URL, payload)
+        self.client.post(COMMENT_URL, payload)
         user = get_user_model().objects.get(email="foo@test.com")
         user_id = user.id
         comment = Comment.objects.latest('id')

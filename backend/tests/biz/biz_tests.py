@@ -31,7 +31,7 @@ class TestBizModel(TestCase):
             'name': 'foo',
             'username': 'foo'
         }
-        user1 = self.client.post(CREATE_USER_URL, payload_user)
+        self.client.post(CREATE_USER_URL, payload_user)
         self.user1_data = get_user_model().objects.get(email="foo@foo.com")
         member_group = Group.objects.get(name="member")
         member_group.user_set.add(self.user1_data)
@@ -93,12 +93,7 @@ class TestBizModel(TestCase):
             "phone": "+989123456789"
         }
         biz = Biz.objects.create(**biz_payload)
-        # hours_payload_original = {
-        #     "weekday": 1,
-        #     "from_hour": "10:00:00",
-        #     "to_hour": "22:30:00",
-        # }
-        Hour_original = Hours.objects.create(weekday=1, from_hour="10:00:00", to_hour="22:30:00", biz=biz)
+        Hours.objects.create(weekday=1, from_hour="10:00:00", to_hour="22:30:00", biz=biz)
         hour = Hours.objects.get(from_hour="10:00:00")
         res = self.client.patch(reverse('hours-detail', args=[hour.pk]), {'to_hour': '12:30:00'})
         self.assertEqual(res.status_code, status.HTTP_200_OK)
