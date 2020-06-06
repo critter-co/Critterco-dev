@@ -31,6 +31,18 @@ class CustomUserModelTests(TestCase):
         """Test that create_user function works"""
         self.assertEqual(self.user.email, 'foo@test.com')
 
+    def test_new_user_email_normalized(self):
+        """Test the email for a new user is normalized"""
+        email = 'test@TESTFOO.COM'
+        user = get_user_model().objects.create_user(email, 'test123')
+
+        self.assertEqual(user.email, email.lower())
+
+    def test_new_user_invalid_email(self):
+        """Test creating user with no email raises error"""
+        with self.assertRaises(ValueError):
+            get_user_model().objects.create_user(None, '123123123')
+
     def test_create_super_user(self):
         """Test that create_superuser function works"""
         self.assertEqual(self.superuser.is_superuser, True)
