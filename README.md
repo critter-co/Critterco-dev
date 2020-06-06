@@ -14,7 +14,7 @@ Temporary repository for Critter app development.
 
 ### Backend requirements.
 - [[DONE]](https://github.com/critter-co/critterco-dev/commit/4095c7526588ea001ab4677c7efde27e456970d8 "Fixing commit") Add a consistant test method or library (such as pytest, paramteraized.).
-- [[DONE]](https://github.com/critter-co/critterco-dev/commit/5a4b5fa158f51d579d87585137f1c871d2eebf23) Cover tests for existing functions (+90% coverage).
+- [[DONE]](https://github.com/critter-co/critterco-dev/commit/0ff5bd451da2900c910ae10f399be260a5721e29 "Fixing commit") Cover tests for existing functions (+90% coverage).
 - [[DONE]](https://github.com/critter-co/critterco-dev/commit/5104dc88efedbc58d2c954445517cb1f6bfd8286 "Fixing commit") Implement flake8, and configure it for needed files; fix linting errors.
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
 - Add automated password reset via email through Celery.
