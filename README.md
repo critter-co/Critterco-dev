@@ -29,17 +29,17 @@ Temporary repository for Critter app development.
 - filter businesses/services by location according to API search queries.
 
 ### Backend todos.
-- [x] [commit](https://github.com/critter-co/critterco-dev/commit/4095c7526588ea001ab4677c7efde27e456970d8 "Fixing commit") Add a consistant test method or library (such as pytest, paramteraized.).
-- [x] [commit](https://github.com/critter-co/critterco-dev/commit/0ff5bd451da2900c910ae10f399be260a5721e29 "Fixing commit") Cover tests for existing functions (+90% coverage).
-- [x] [commit](https://github.com/critter-co/critterco-dev/commit/5104dc88efedbc58d2c954445517cb1f6bfd8286 "Fixing commit") Implement flake8, and configure it for needed files; fix linting errors.
+- [x] Add a consistant test method or library (such as pytest, paramteraized.). [commit](https://github.com/critter-co/critterco-dev/commit/4095c7526588ea001ab4677c7efde27e456970d8 "Fixing commit") 
+- [x] Cover tests for existing functions (+90% coverage). [commit](https://github.com/critter-co/critterco-dev/commit/0ff5bd451da2900c910ae10f399be260a5721e29 "Fixing commit") 
+- [x] Implement flake8, and configure it for needed files; fix linting errors. [commit](https://github.com/critter-co/critterco-dev/commit/5104dc88efedbc58d2c954445517cb1f6bfd8286 "Fixing commit")
 - Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
 - Add automated password reset via email through Celery.
-- [x] [commit](https://github.com/critter-co/critterco-dev/commit/5037049df12288ce1722da5c04a060c7ea2b1bcd "Fixing commit") Configure django's setting to cache biz queries via Redis.
+- [x] Configure django's setting to cache biz queries via Redis. [commit](https://github.com/critter-co/critterco-dev/commit/5037049df12288ce1722da5c04a060c7ea2b1bcd "Fixing commit")
 - Move all django apps to an "apps" folder for a cleaner environment.
-- [x] [commit](https://github.com/critter-co/critterco-dev/commit/dd1810a584648f84cf960cb0da3ba8a0702dd399 "Fixing commit") Move all scripts to a "scripts" folder, and make sure docker works properly with new paths.
+- [x] Move all scripts to a "scripts" folder, and make sure docker works properly with new paths. [commit](https://github.com/critter-co/critterco-dev/commit/dd1810a584648f84cf960cb0da3ba8a0702dd399 "Fixing commit") 
 
 ### Build (or Docker) todos.
 - Fix the error with pgadmin (not working after adding nginx.).
 - Add Celery for asynchronous backend tasks.
-- [x] [commit](https://github.com/critter-co/critterco-dev/commit/96b7ae7bbb325af4a3b4e5b0c83ea477b8dabb51 "Fixing commit") Add Redis for caching.
+- [x] Add Redis for caching. [commit](https://github.com/critter-co/critterco-dev/commit/96b7ae7bbb325af4a3b4e5b0c83ea477b8dabb51 "Fixing commit") 
 - [FAILED] Replace nginx with Traefik if it offers better solution for https and certs.
