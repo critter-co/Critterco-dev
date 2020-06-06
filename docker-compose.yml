@@ -41,8 +41,8 @@ services:
   redis:
     restart: always
     image: redis:6.0.4-alpine
-    expose:
-      - "6379"
+    ports:
+      - "6379:6379"
 
 
   frontend:
