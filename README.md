@@ -1,4 +1,4 @@
-# Critter Project Dev Repository. https://travis-ci.com/critter-co/critterco-dev.svg?branch=master
+# Critter 
 Temporary repository for Critter app development.
 
 ## Phase A
