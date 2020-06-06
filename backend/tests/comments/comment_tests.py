@@ -56,7 +56,7 @@ class TestPatchComments(TestCase):
             'password': 'testpassword',
             'name': 'bar'
         }
-        res = self.client.post(CREATE_USER_URL, payload_user)
+        self.client.post(CREATE_USER_URL, payload_user)
         get_token = self.client.post(TOKEN_URL, payload_user, format='json')
         token = get_token.data['access']
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
