@@ -20,6 +20,8 @@ Temporary repository for Critter app development.
 ## Phase A
 
 ### Frontend todos.
+- [ ] Implement testing modules/libraries and coverage reports for TDD.
+- [ ] Configure TravisCI for frontend tests/build report on each push.
 - [ ] Add basic landing page using bootstrap/? based on given design templates, including header, main body, footer.
 - [ ] Implement authentication system using VueX. 
 - [ ] Handle user profile management functions (logout, edit info, etc.).
@@ -34,6 +36,7 @@ Temporary repository for Critter app development.
 - [x] Implement flake8, and configure it for needed files; fix linting errors. [commit](https://github.com/critter-co/critterco-dev/commit/5104dc88efedbc58d2c954445517cb1f6bfd8286 "Fixing commit")
 - [ ] Add Celery for asynchronous tasks such as sending emails for confirmation/password reset.
 - [ ] Add automated password reset via email through Celery.
+- [ ] Implement email confirmation at signup.
 - [x] Configure django's setting to cache biz queries via Redis. [commit](https://github.com/critter-co/critterco-dev/commit/5037049df12288ce1722da5c04a060c7ea2b1bcd "Fixing commit")
 - [ ] Move all django apps to an "apps" folder for a cleaner environment.
 - [x] Move all scripts to a "scripts" folder, and make sure docker works properly with new paths. [commit](https://github.com/critter-co/critterco-dev/commit/dd1810a584648f84cf960cb0da3ba8a0702dd399 "Fixing commit") 
@@ -43,3 +46,11 @@ Temporary repository for Critter app development.
 - [ ] Add Celery for asynchronous backend tasks.
 - [x] Add Redis for caching. [commit](https://github.com/critter-co/critterco-dev/commit/96b7ae7bbb325af4a3b4e5b0c83ea477b8dabb51 "Fixing commit") 
 - [ ] [FAILED] Replace nginx with Traefik if it offers better solution for https and certs.
+
+### Phase A Ending:
+- [ ] Web has a frontend that shows User info/Biz info.
+- [ ] Users can post and edit Biz, and update their info, according to permissions.
+- [ ] Users can request "forgot password" and do it via email confirmation.
+- [ ] User location is determined via IP/permission for gps info. Or they select location.
+- [ ] Nearby Bizs will be shown on a map.
+- [ ] Users can comment on each biz and these comments show up on Biz pages.
