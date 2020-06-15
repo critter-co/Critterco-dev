@@ -1,21 +1,25 @@
+# Core packages
 Django>=3.0.3,<3.1.0
-djangorestframework>=3.11.0,<3.12.0
-psycopg2-binary==2.8.5
-pillow>=6.2.2,<6.3.0
-flake8==3.6.0
 django-cors-headers
-django-phonenumber-field[phonenumberslite]
-django-rest-passwordreset>=1.1.0,<1.2.0
-django-debug-toolbar>=2.2.0,<2.3.0
+djangorestframework>=3.11.0,<3.12.0
 djangorestframework-gis==0.15
-django-filter>=2.2.0,<2.3.0
+pillow>=6.2.2,<6.3.0
+psycopg2-binary==2.8.5
 gunicorn>=20.0.4,<20.1.0
-djangorestframework-simplejwt>=4.4.0,<4.5.0
-factory_boy
-redis>=3.5.2,<3.6.0
+# Caching and Async (Celery) packages
 django-redis>=4.12.1,<4.13.0
-django-silk
-drf-extensions==0.6.0
-coverage>=5.1,<5.2
-pytest-django>=3.9.0,<4.0.0
+redis>=3.5.2,<3.6.0
 celery==4.2
+# Extensions and addons
+django-filter>=2.2.0,<2.3.0
+djangorestframework-simplejwt>=4.4.0,<4.5.0
+django-rest-passwordreset>=1.1.0,<1.2.0
+django-phonenumber-field[phonenumberslite]
+drf-extensions==0.6.0
+# Debug, Lingtin, and Testing packages
+coverage>=5.1,<5.2
+django-debug-toolbar>=2.2.0,<2.3.0
+flake8==3.6.0
+factory_boy
+django-silk
+pytest-django>=3.9.0,<4.0.0
