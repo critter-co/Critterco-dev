@@ -10,7 +10,7 @@ import shlex
 import subprocess
 
 from django.core.management.base import BaseCommand
-from django.utils import autoreload
+from django.utils import autoreload  # noqa F401
 
 
 def restart_celery():
@@ -29,6 +29,6 @@ class Command(BaseCommand):
             from django.utils.autoreload import run_with_reloader
             run_with_reloader(restart_celery)
         except ImportError:
-            from django.utils import autoreload
+            from django.utils import autoreload  # noqa F811
             autoreload.main(restart_celery)
         # autoreload.main(restart_celery)
