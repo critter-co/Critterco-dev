@@ -28,7 +28,7 @@ class TestBizModel(TestCase):
         payload_user = {
             'email': 'foo@foo.com',
             'password': 'testpassword',
-            'name': 'foo',
+            'first_name': 'foo',
             'username': 'foo'
         }
         self.client.post(CREATE_USER_URL, payload_user)

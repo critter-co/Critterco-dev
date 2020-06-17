@@ -25,7 +25,8 @@ class PublicUserApiTests(TestCase):
         payload = {
             'email': 'foo@test.com',
             'password': 'testpassword',
-            'name': 'Test name'
+            'name': 'Test name',
+            'first_name': 'fooname'
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
@@ -39,7 +40,8 @@ class PublicUserApiTests(TestCase):
         payload = {
             'email': 'foo@test.com',
             'password': 'testpassword',
-            'name': 'Test name'
+            'name': 'Test name',
+            'first_name': 'fooname'
         }
         res = self.client.post(CREATE_USER_URL, payload)
         user = get_user_model().objects.get(**res.data)
@@ -50,7 +52,8 @@ class PublicUserApiTests(TestCase):
         """Test creating a user that already exists fails."""
         payload = {
             'email': 'foo@test.com',
-            'password': 'testpassword'
+            'password': 'testpassword',
+            'first_name': 'fooname'
         }
         create_user(**payload)
 
@@ -63,7 +66,8 @@ class PublicUserApiTests(TestCase):
         payload = {
             'email': '@badmail.com',
             'password': 'testpassword',
-            'name': 'Test name'
+            'name': 'Test name',
+            'first_name': 'fooname'
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
@@ -73,7 +77,8 @@ class PublicUserApiTests(TestCase):
         """Test that the password must be more than 5 characters."""
         payload = {
             "email": 'test@bar.com',
-            "password": "pw"
+            "password": "pw",
+            'first_name': 'fooname'
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
@@ -87,7 +92,8 @@ class PublicUserApiTests(TestCase):
         """Test that user can get a token"""
         payload = {
             'email': 'foo@test.com',
-            'password': 'testpassword'
+            'password': 'testpassword',
+            'first_name': 'fooname'
         }
         create_user(**payload)
         res = self.client.post(TOKEN_URL, payload)
@@ -101,7 +107,8 @@ class PublicUserApiTests(TestCase):
         create_user(email='test@foo.com', password='testpassword')
         payload = {
             'email': 'test@foo.com',
-            'password': 'wrongpassword'
+            'password': 'wrongpassword',
+            'first_name': 'fooname'
         }
         res = self.client.post(TOKEN_URL, payload)
         self.assertNotIn('access', res.data)
@@ -111,7 +118,8 @@ class PublicUserApiTests(TestCase):
         """Test that token is not created if user doesn't exist."""
         payload = {
             "email": "test@foo.com",
-            "password": "testpassword"
+            "password": "testpassword",
+            'username': 'fooname'
         }
         res = self.client.post(TOKEN_URL, payload)
 
@@ -126,7 +134,7 @@ class PublicUserApiTests(TestCase):
 
     def test_user_can_update_password(self):
         """Test that user can update their password when they are logged in"""
-        create_user(email='test@foo.com', password='testpassword')
+        create_user(email='test@foo.com', password='testpassword', first_name='fooname')
         get_token = self.client.post(TOKEN_URL, {'email': 'test@foo.com',
                                                  'password': 'testpassword'}, format='json')
         token = get_token.data['access']

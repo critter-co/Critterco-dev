@@ -67,7 +67,7 @@ class PermissionsTests(TestCase):
         payload = {
             'email': 'foo@test.com',
             'password': 'testpassword',
-            'name': 'Test name'
+            'first_name': 'Test name'
         }
         res = self.client.post(CREATE_USER_URL, payload)
         user = get_user_model().objects.get(**res.data)

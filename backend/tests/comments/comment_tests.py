@@ -27,7 +27,7 @@ class TestPatchComments(TestCase):
         payload = {
             'content': 'Test 1'
         }
-        create_user(email="foo@test.com", password="testpassword")
+        create_user(email="foo@test.com", password="testpassword", first_name="fooname")
         self.client.login(email="foo@test.com", password="testpassword")
         res = self.client.post(COMMENT_URL, payload)
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
@@ -37,7 +37,7 @@ class TestPatchComments(TestCase):
         payload_user = {
             'email': 'foo@test.com',
             'password': 'testpassword',
-            'name': 'bar'
+            'first_name': 'bar'
         }
         res = self.client.post(CREATE_USER_URL, payload_user)
         get_token = self.client.post(TOKEN_URL, payload_user, format='json')
@@ -54,7 +54,7 @@ class TestPatchComments(TestCase):
         payload_user = {
             'email': 'foo@test.com',
             'password': 'testpassword',
-            'name': 'bar'
+            'first_name': 'bar'
         }
         self.client.post(CREATE_USER_URL, payload_user)
         get_token = self.client.post(TOKEN_URL, payload_user, format='json')
@@ -75,7 +75,7 @@ class TestPatchComments(TestCase):
         payload_user = {
             'email': 'foo@test.com',
             'password': 'testpassword',
-            'name': 'bar'
+            'first_name': 'bar'
         }
         res = self.client.post(CREATE_USER_URL, payload_user)
         get_token = self.client.post(TOKEN_URL, payload_user, format='json')
@@ -96,7 +96,7 @@ class TestPatchComments(TestCase):
         payload_user = {
             'email': 'foo@foo.com',
             'password': 'testpassword',
-            'name': 'foo',
+            'first_name': 'foo',
             'username': 'foo'
         }
         res = self.client.post(CREATE_USER_URL, payload_user)
@@ -112,7 +112,7 @@ class TestPatchComments(TestCase):
         payload_user2 = {
             'email': 'bar@bar.com',
             'password': 'testpassword',
-            'name': 'bar',
+            'first_name': 'bar',
             'username': 'bar'
         }
         self.client.post(CREATE_USER_URL, payload_user2)
