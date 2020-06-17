@@ -50,6 +50,8 @@ services:
       context: .
       dockerfile: ./backend/Dockerfile
     container_name: celery
+    environment:
+      - BACKEND_SECRET=${BACKEND_SECRET}
     command: bash -c 'python3 manage.py watch_celery'
     volumes:
       - ./backend:/code
