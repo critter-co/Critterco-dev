@@ -5,7 +5,7 @@ from .models import User
 class UsersAdmin(admin.ModelAdmin):
     list_display = (
         "email",
-        "name",
+        "first_name",
         "username",
         "is_active",
         "is_staff",
