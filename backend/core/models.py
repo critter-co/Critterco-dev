@@ -1,3 +1,5 @@
+import random
+import string
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -16,7 +18,7 @@ class UserManager(BaseUserManager):
         user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
         user.save(using=self.db)
-
+        user.is_active = False
         return user
 
     def create_superuser(self, email, password):
@@ -57,3 +59,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     username = models.CharField(max_length=50, null=True, blank=True, unique=True)
     USERNAME_FIELD = "email"
+
+
+def generate_activation_code():
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(6))
+
+
+class ActivationCode(models.Model):
+    user = models.ForeignKey(User, null=False, on_delete=models.PROTECT)
+    code = models.CharField(max_length=6, default=generate_activation_code)

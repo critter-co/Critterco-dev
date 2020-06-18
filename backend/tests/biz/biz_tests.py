@@ -33,8 +33,11 @@ class TestBizModel(TestCase):
         }
         self.client.post(CREATE_USER_URL, payload_user)
         self.user1_data = get_user_model().objects.get(email="foo@foo.com")
+        self.user1_data.is_active = True
+        self.user1_data.save()
         member_group = Group.objects.get(name="member")
         member_group.user_set.add(self.user1_data)
+        self.user1_data.is_active = True
         get_token1 = self.client.post(TOKEN_URL, payload_user, format='json')
         token1 = get_token1.data['access']
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + token1)

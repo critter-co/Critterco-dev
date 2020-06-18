@@ -1,4 +1,5 @@
 {
     "python.linting.enabled": false,
-    "python.linting.flake8Enabled": true
+    "python.linting.flake8Enabled": true,
+    "python.pythonPath": "C:\\Users\\mirja\\.virtualenvs\\critter-env-YjJuNu5O\\Scripts\\python.exe"
 }

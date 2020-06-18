@@ -40,6 +40,9 @@ class TestPatchComments(TestCase):
             'first_name': 'bar'
         }
         res = self.client.post(CREATE_USER_URL, payload_user)
+        u = get_user_model().objects.get(email='foo@test.com')
+        u.is_active = True
+        u.save()
         get_token = self.client.post(TOKEN_URL, payload_user, format='json')
         token = get_token.data['access']
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
@@ -57,6 +60,9 @@ class TestPatchComments(TestCase):
             'first_name': 'bar'
         }
         self.client.post(CREATE_USER_URL, payload_user)
+        u = get_user_model().objects.get(email='foo@test.com')
+        u.is_active = True
+        u.save()
         get_token = self.client.post(TOKEN_URL, payload_user, format='json')
         token = get_token.data['access']
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
@@ -78,6 +84,9 @@ class TestPatchComments(TestCase):
             'first_name': 'bar'
         }
         res = self.client.post(CREATE_USER_URL, payload_user)
+        u = get_user_model().objects.get(email='foo@test.com')
+        u.is_active = True
+        u.save()
         get_token = self.client.post(TOKEN_URL, payload_user, format='json')
         token = get_token.data['access']
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
@@ -100,6 +109,9 @@ class TestPatchComments(TestCase):
             'username': 'foo'
         }
         res = self.client.post(CREATE_USER_URL, payload_user)
+        u = get_user_model().objects.get(email='foo@foo.com')
+        u.is_active = True
+        u.save()
         get_token = self.client.post(TOKEN_URL, payload_user, format='json')
         token = get_token.data['access']
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
@@ -116,6 +128,9 @@ class TestPatchComments(TestCase):
             'username': 'bar'
         }
         self.client.post(CREATE_USER_URL, payload_user2)
+        u = get_user_model().objects.get(email='bar@bar.com')
+        u.is_active = True
+        u.save()
         get_token2 = self.client.post(TOKEN_URL, payload_user2, format='json')
         token2 = get_token2.data['access']
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + token2)

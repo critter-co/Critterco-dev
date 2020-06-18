@@ -4,10 +4,12 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
+from core.models import ActivationCode
 
 CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('token_obtain_pair')
 EDIT_USER_URL = reverse('user:me')
+CONFIRM_CODE_URL = reverse('user:confirm')
 
 
 def create_user(**params):
@@ -143,3 +145,47 @@ class PublicUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         user = get_user_model().objects.get(email='test@foo.com')
         self.assertTrue(user.check_password('newpassword'))
+
+    def test_user_deactive_at_signup(self):
+        """Test that users are inactive upon signup"""
+        payload_user = {
+            'email': 'foo@foo.com',
+            'password': 'testpassword',
+            'first_name': 'foo',
+            'username': 'foo'
+        }
+        self.client.post(CREATE_USER_URL, payload_user)
+        user = get_user_model().objects.get(email='foo@foo.com')
+        self.assertEqual(user.is_active, False)
+
+    def test_activation_code_generation_signup(self):
+        """Test that an activation code is generated at signup"""
+        payload_user = {
+            'email': 'foo@foo.com',
+            'password': 'testpassword',
+            'first_name': 'foo',
+            'username': 'foo'
+        }
+        self.client.post(CREATE_USER_URL, payload_user)
+        user = get_user_model().objects.get(email='foo@foo.com')
+        res = ActivationCode.objects.get(user=user)
+        self.assertTrue(res)
+
+    def test_user_activates_with_emailed_code(self):
+        """Test that users can activate their account with the code emailed to them"""
+        payload_user = {
+            'email': 'foo@foo.com',
+            'password': 'testpassword',
+            'first_name': 'foo',
+            'username': 'foo'
+        }
+        self.client.post(CREATE_USER_URL, payload_user)
+        user_id = get_user_model().objects.get(email='foo@foo.com').id
+        code = ActivationCode.objects.get(user_id=user_id).code
+        code_load = {
+            'code': code
+        }
+        res = self.client.post(CONFIRM_CODE_URL, code_load)
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        user_status = get_user_model().objects.get(email='foo@foo.com').is_active
+        self.assertEqual(user_status, True)
