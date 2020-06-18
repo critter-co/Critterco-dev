@@ -189,3 +189,10 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+EMAIL_HOST = 'smtp.elasticemail.com'
+EMAIL_HOST_USER = 'hoseyn.wanton@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = '2525'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

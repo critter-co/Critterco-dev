@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
-# from django.core.mail import send_mail
+from django.core.mail import send_mail
 from core.models import ActivationCode
 from rest_framework import serializers
 
@@ -43,13 +43,13 @@ class UserSerializer(serializers.ModelSerializer):
         user.is_active = False
         user.set_password(validated_data["password"])
         member_group.user_set.add(user)
-        code = ActivationCode.objects.create(user=user)  # noqa F841
-        # send_mail(
-        #     'Activate Your Account',
-        #     'Here is the activation code: %s' % code,
-        #     'hoseyn.wanton@gmail.com',
-        #     [user.email]
-        # )
+        code = ActivationCode.objects.create(user=user).code  # noqa F841
+        send_mail(
+            'Activate Your Account',
+            'Here is the activation code: %s' % code,
+            'hoseyn.wanton@gmail.com',
+            [user.email]
+        )
         user.save()
         return user
 
