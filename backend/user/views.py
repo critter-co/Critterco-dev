@@ -29,8 +29,6 @@ class ConfirmCodeView(APIView):
             user.save()
             co.delete()
             return Response(user.email, status=status.HTTP_200_OK)
-            # msg1 = _("Activation successful.")
-            # raise serializers.ValidationError(msg1, code="success")
         except ActivationCode.DoesNotExist:
             msg2 = _("Wrong code entered.")
             raise serializers.ValidationError(msg2, code="wrong")
@@ -40,8 +38,6 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
     """Manage the authenticated user"""
 
     serializer_class = UserSerializer
-    # authentication_classes = (authentication.TokenAuthentication,) /
-    # Commented above live due to issues with simple-jwt package.
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_object(self):
