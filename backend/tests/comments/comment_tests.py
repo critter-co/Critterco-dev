@@ -4,6 +4,7 @@ from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from comments.models import Comment
+from unittest.mock import MagicMock, patch
 
 COMMENT_URL = reverse('comment-list')
 # COMMENT_DETAIL_URL = reverse('comment-detail', args=comment.pk)
@@ -16,6 +17,7 @@ def create_user(**params):
     return get_user_model().objects.create_user(**params)
 
 
+@patch('backend.celery_app.send_email_task', new=MagicMock())
 class TestPatchComments(TestCase):
     """Tests for comment functions"""
 

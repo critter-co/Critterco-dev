@@ -8,6 +8,4 @@ services:
 before_script: pip install docker-compose
 
 script:
-    - docker-compose run celery bash -c 'python3 manage.py watch_celery'
     - docker-compose run backend sh -c "coverage run -m pytest ./tests/ && flake8"
-    - docker-compose run celery bash -c 'celery multi stopwait worker1'

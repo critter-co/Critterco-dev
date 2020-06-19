@@ -5,6 +5,7 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status  # noqa: F401
 from core.permissions import is_in_group
+from unittest.mock import MagicMock, patch
 
 CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('token_obtain_pair')
@@ -19,6 +20,7 @@ def create_superuser(**params):
     return get_user_model().objects.create_superuser(**params)
 
 
+@patch('backend.celery_app.send_email_task', new=MagicMock())
 class CustomUserModelTests(TestCase):
     """Test UserManager in user models functions."""
 

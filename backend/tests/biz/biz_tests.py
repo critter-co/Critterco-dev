@@ -1,11 +1,12 @@
+import datetime
+from biz.models import Biz, Hours
 from django.urls import reverse
 from django.test import TestCase
 from django.contrib.auth.models import Group
-from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
 from rest_framework import status
-from biz.models import Biz, Hours
-import datetime
+from rest_framework.test import APIClient
+from unittest.mock import MagicMock, patch
 
 BIZ_URL = reverse('biz-list')
 # COMMENT_DETAIL_URL = reverse('comment-detail', args=comment.pk)
@@ -18,6 +19,7 @@ def create_user(**params):
     return get_user_model().objects.create_user(**params)
 
 
+@patch('backend.celery_app.send_email_task', new=MagicMock())
 class TestBizModel(TestCase):
     """Tests for comment functions"""
 
