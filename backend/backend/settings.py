@@ -190,9 +190,9 @@ INTERNAL_IPS = [
     # ...
 ]
 
-EMAIL_HOST = 'smtp.elasticemail.com'
-EMAIL_HOST_USER = 'hoseyn.wanton@gmail.com'
+EMAIL_HOST = 'smtp.fastmail.com'
+EMAIL_HOST_USER = 'critter_dev@fastmail.com'
 EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = '2525'
+EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
