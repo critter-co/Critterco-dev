@@ -16,6 +16,7 @@ CONFIRM_CODE_URL = reverse('user:confirm')
 def create_user(**params):
     return get_user_model().objects.create_user(**params)
 
+
 @patch('backend.celery_app.send_email_task', new=MagicMock())
 class PublicUserApiTests(TestCase):
     """Test sign up API."""
