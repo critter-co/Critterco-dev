@@ -189,3 +189,22 @@ class PublicUserApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         user_status = get_user_model().objects.get(email='foo@foo.com').is_active
         self.assertEqual(user_status, True)
+
+    def test_wrong_code_for_activation(self):
+        """Test that activation function will NOT work with a WRONG CODE"""
+        payload_user = {
+            'email': 'foo@foo.com',
+            'password': 'testpassword',
+            'first_name': 'foo',
+            'username': 'foo'
+        }
+        self.client.post(CREATE_USER_URL, payload_user)
+        get_user_model().objects.get(email='foo@foo.com').id
+        code = 'WRONGCODE'
+        code_load = {
+            'code': code
+        }
+        res = self.client.post(CONFIRM_CODE_URL, code_load)
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+        user_status = get_user_model().objects.get(email='foo@foo.com').is_active
+        self.assertEqual(user_status, False)
