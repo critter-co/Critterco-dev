@@ -5,7 +5,21 @@ python:
 services: 
     - docker
 
+env:
+    # Backend variables for db connection.
+    - DB_HOST=db
+    - BACKEND_SECRET=dev_secret
+
+    # Postgres environment variables.
+    - POSTGRES_DB=app
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+
+    # pgadmin environment variables.
+    - PGADMIN_DEFAULT_EMAIL=test
+    - PGADMIN_DEFAULT_PASSWORD=password
+
 before_script: pip install docker-compose
 
 script:
-    - docker-compose run -e BACKEND_SECRET=your_secret -e DB_HOST=db -e POSTGRES_DB=app -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres backend sh -c "coverage run -m pytest ./tests/ && flake8"
+    - docker-compose run backend sh -c "coverage run -m pytest ./tests/ && flake8"
