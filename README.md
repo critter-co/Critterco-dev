@@ -15,7 +15,7 @@ Temporary repository for Critter app development.
 - You can access API endpoint at "localhost/api/", and frontend at "localhost".
 - Portainer is accessible at "localhost:9000". Make sure you create an admin account before 5 minutes or container stops.
 - Redis-commander is accessible at "localhost:8085" for monitoring redis caches.
-- Endpoint documentation will be added at a later date here (most probably Postman Documenting).
+- [API endpoints documentation](https://documenter.getpostman.com/view/10900080/SzzdC1NW) .
 
 ## Phase A
 
