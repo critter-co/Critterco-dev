@@ -8,4 +8,4 @@ services:
 before_script: pip install docker-compose
 
 script:
-    - docker-compose run backend sh -c "coverage run -m pytest ./tests/ && flake8"
+    - docker-compose run -e ./env_example backend sh -c "coverage run -m pytest ./tests/ && flake8"
