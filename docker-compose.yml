@@ -17,6 +17,7 @@ services:
       - DB_USER=${POSTGRES_USER}
       - DB_PASS=${POSTGRES_PASSWORD}
       - BACKEND_SECRET=${BACKEND_SECRET}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
       - TZ=Asia/Tehran
     depends_on:
       - db
