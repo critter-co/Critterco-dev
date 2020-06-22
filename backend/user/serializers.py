@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from core.models import ActivationCode
 from rest_framework import serializers
-from backend.celery_app import send_email_task
+from backend.celery_app import send_email_task, send_htmail_task
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -44,7 +44,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data["password"])
         member_group.user_set.add(user)
         code = ActivationCode.objects.create(user=user).code  # noqa F841
-        send_email_task.delay(code, email=user.email)
+        send_htmail_task.delay(code, email=user.email)
         user.save()
         return user
 
