@@ -11,6 +11,7 @@ Temporary repository for Critter app development.
 - Make sure Docker engine is running.
 - [For Linux] Make sure you can run sudo commands or your user is in docker group, and you have docker-compose installed.
 - Open a terminal and navigate to project directory where "docker-compose.yml" file resides.
+- **important** make sure u rename the file ".env_example" to ".env" and write desired environment variables.
 - Run ```docker-compose up --build```; wait for docker to download and build images.
 - You can access API endpoint at "localhost/api/", and frontend at "localhost".
 - Portainer is accessible at "localhost:9000". Make sure you create an admin account before 5 minutes or container stops.
