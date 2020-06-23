@@ -55,3 +55,43 @@ Temporary repository for Critter app development.
 - [ ] User location is determined via IP/permission for gps info. Or they select location.
 - [ ] Nearby Bizs will be shown on a map.
 - [ ] Users can comment on each biz and these comments show up on Biz pages.
+
+## Phase B
+
+### Android/iOS Apps.
+- [ ] Basic app layout with logo, map functionality, sign-up, login.
+- [ ] Users able to edit their personal info.
+- [ ] Users can post, edit Biz info based on their permissions.
+- [ ] App receive live GPS location and update user location info.
+- [ ] Show nearby Biz based on location.
+- [ ] Direct contact(phone call, etc.) from Biz page if Biz phone number was provided.
+- [ ] Users able to write comments, reviews, etc.
+
+### Backend todos.
+- [ ] Add user avatar. One image for user profile.
+- [ ] Differentiate reviews and comments in separate models/serializers.
+- [ ] Add likes/upvotes/reactions to comments and/or reviews.
+- [ ] Expand the Gallery of Biz to support multiple images possibly in a separate model.
+- [ ] Implement users uploading pictures of Biz.
+- [ ] Add editor/owner field to Biz so only owner user(s) can edit info.
+- [ ] Add blog/news to Biz (only owners can publish).
+- [ ] Add poll/surverys to Biz (only owners can publish).
+- [ ] Implement IP blacklists and concurrent request to prevent brute-forcing.
+- [ ] Email confirmation/password reset done through LINKS instead of 6-digit codes.
+- [ ] Add Biz info from available APIs (Google places, etc.) through web crawling.
+- [ ] Add categories/tag feature for Biz to be separated by them.
+- [ ] Implement Graphql if needed for specific needs.
+
+### Frontend todos.
+- [ ] Use Graphql for needed functionality, if any.
+- [ ] Run different performance tests and improve if results aren't satisfying.
+- [ ] Implement newly added Backend functions, such as like/reaction, differentiated comment/reviews, etc.
+
+### Build (or Docker) todos.
+- [ ] Add https certification(automated cert refresh), through either Nginx or Traefik.
+- [ ] Add MongoDB if it's needed for image upload, and gallery management.
+- [ ] Network mapping according to services and their communication needs.
+- [ ] Implement Docker Swarm for seamless and automated updates.
+- [ ] Implement Gitlab CI/CD if the service is better than current Travis CI.
+- [ ] Deploy the app on an appropriate host for live beta testing.
+- [ ] Run stress performance tests and debug the issues.
