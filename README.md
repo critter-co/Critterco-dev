@@ -36,7 +36,7 @@ Temporary repository for Critter app development.
 - [x] Cover tests for existing functions (+90% coverage). [commit](https://github.com/critter-co/critterco-dev/commit/0ff5bd451da2900c910ae10f399be260a5721e29 "Fixing commit") 
 - [x] Implement flake8, and configure it for needed files; fix linting errors. [commit](https://github.com/critter-co/critterco-dev/commit/5104dc88efedbc58d2c954445517cb1f6bfd8286 "Fixing commit")
 - [x] Add Celery for asynchronous tasks such as sending emails for confirmation/password reset. [commit](https://github.com/critter-co/critterco-dev/commit/28cc5ec9ddfb3212d5d08e91436997f7fdafba9a "Fixing commit")
-- [ ] Add automated password reset via email through Celery.
+- [x] Add automated password reset via email through Celery. [commit](https://github.com/critter-co/critterco-dev/commit/508474206fe969df6520cacee683b13da408d385 "Fixing commit")
 - [x] Implement email confirmation at signup. [commit](https://github.com/critter-co/critterco-dev/commit/644bbfe8d2ce11e951a98918a0f3c358eefc2d0d "Fixing commit")
 - [x] Configure django's setting to cache biz queries via Redis. [commit](https://github.com/critter-co/critterco-dev/commit/5037049df12288ce1722da5c04a060c7ea2b1bcd "Fixing commit")
 - [ ] Move all django apps to an "apps" folder for a cleaner environment.
