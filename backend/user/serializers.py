@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from core.models import ActivationCode
 from rest_framework import serializers
-from backend.celery_app import send_email_task, send_htmail_task
+from backend.celery_app import send_email_task, send_htmail_task  # noqa: F401
 
 
 class UserSerializer(serializers.ModelSerializer):
