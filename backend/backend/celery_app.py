@@ -1,10 +1,12 @@
 import os
 import time
 from django.core.mail import send_mail
+from django.dispatch import receiver
 from django.template.loader import render_to_string
 from celery import shared_task
 from celery import Celery
 from django.core.mail import EmailMultiAlternatives
+from django_rest_passwordreset.signals import reset_password_token_created
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 app = Celery('backend')
@@ -42,6 +44,24 @@ def send_htmail_task(*args, **kwargs):
         reply_to=["hoseyn.wanton@gmail.com"])
 
     msg_html = render_to_string('emails/account_activation.html', {'code': code})
+    msg.attach_alternative(msg_html, "text/html")
+
+    # Send it:
+    msg.send()
+
+
+@shared_task
+@receiver(reset_password_token_created)
+def send_pwreset_task(sender, instance, reset_password_token, *args, **kwargs):
+    code = reset_password_token.key
+    msg = EmailMultiAlternatives(
+        subject="Critter password reset.",
+        body="Here is the indentification code: %s" % code,
+        from_email="hoseyn.wanton@gmail.com",
+        to=[reset_password_token.user.email],
+        reply_to=["hoseyn.wanton@gmail.com"])
+
+    msg_html = render_to_string('emails/password_reset.html', {'code': code})
     msg.attach_alternative(msg_html, "text/html")
 
     # Send it:
