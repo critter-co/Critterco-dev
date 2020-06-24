@@ -39,10 +39,10 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "rest_framework_gis",
     # My internal django apps.
-    "biz",
-    "comments",
-    "core",
-    "user",
+    "apps.biz",
+    "apps.comments",
+    "apps.core",
+    "apps.user",
 ]
 
 MIDDLEWARE = [

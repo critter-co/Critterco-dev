@@ -3,7 +3,7 @@ from django.test import TestCase
 from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
 from rest_framework import status
-from comments.models import Comment
+from apps.comments.models import Comment
 from unittest.mock import MagicMock, patch
 
 COMMENT_URL = reverse('comment-list')

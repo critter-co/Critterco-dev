@@ -2,7 +2,7 @@ from rest_framework import generics, permissions, serializers, status
 from .serializers import UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from core.models import ActivationCode
+from apps.core.models import ActivationCode
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 

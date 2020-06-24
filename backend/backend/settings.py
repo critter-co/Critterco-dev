@@ -39,10 +39,10 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "rest_framework_gis",
     # My internal django apps.
-    "biz",
-    "comments",
-    "core",
-    "user",
+    "apps.biz",
+    "apps.comments",
+    "apps.core",
+    "apps.user",
 ]
 
 MIDDLEWARE = [
@@ -150,7 +150,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "core/static"),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "apps/core/static"),)
 # Media configs.
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -192,7 +192,7 @@ INTERNAL_IPS = [
 
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_HOST_USER = 'hoseyn.wanton@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'D4B1C75F5CBE046ACA8ADD3D72AFF234D795'
 EMAIL_PORT = '2525'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False

@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework_gis.filters import DistanceToPointFilter
 from .models import Biz, Hours
-from core.permissions import HasGroupPermission
+from apps.core.permissions import HasGroupPermission
 from .serializers import BizSerializer, HoursSerializer
 from rest_framework_extensions.cache.mixins import CacheResponseMixin
 

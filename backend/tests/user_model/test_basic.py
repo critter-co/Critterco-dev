@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status  # noqa: F401
-from core.permissions import is_in_group
+from apps.core.permissions import is_in_group
 from unittest.mock import MagicMock, patch
 
 CREATE_USER_URL = reverse('user:create')

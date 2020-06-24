@@ -2,7 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework import viewsets, serializers
 from .models import Comment
 from .serializers import CommentSerializer
-from core.permissions import HasGroupPermission
+from apps.core.permissions import HasGroupPermission
 
 # Comment serializer views.
 

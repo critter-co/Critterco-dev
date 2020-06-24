@@ -3,7 +3,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.gis.db import models
 from django.utils.translation import ugettext as _
 from django.core.validators import RegexValidator
-from core.models import User
+from apps.core.models import User
 
 WEEKDAYS = [
     (1, _("Saturday")),
