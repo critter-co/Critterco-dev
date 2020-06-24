@@ -39,7 +39,7 @@ Temporary repository for Critter app development.
 - [x] Add automated password reset via email through Celery. [commit](https://github.com/critter-co/critterco-dev/commit/508474206fe969df6520cacee683b13da408d385 "Fixing commit")
 - [x] Implement email confirmation at signup. [commit](https://github.com/critter-co/critterco-dev/commit/644bbfe8d2ce11e951a98918a0f3c358eefc2d0d "Fixing commit")
 - [x] Configure django's setting to cache biz queries via Redis. [commit](https://github.com/critter-co/critterco-dev/commit/5037049df12288ce1722da5c04a060c7ea2b1bcd "Fixing commit")
-- [ ] Move all django apps to an "apps" folder for a cleaner environment.
+- [x] Move all django apps to an "apps" folder for a cleaner environment.
 - [x] Move all scripts to a "scripts" folder, and make sure docker works properly with new paths. [commit](https://github.com/critter-co/critterco-dev/commit/dd1810a584648f84cf960cb0da3ba8a0702dd399 "Fixing commit") 
 
 ### Build (or Docker) todos.
