@@ -17,14 +17,13 @@ const createStore = () => {
       }
     },
     actions: {
-      signingup(vuexContext, authData, state) {
+      async signingup(vuexContext, authData, state) {
         let authUrl =
           "http://localhost/api/user/create/";
-
         return this.$axios
           .$post(authUrl, {
-            firstname: authData.firstname,
-            lastname: authData.lastname,
+            first_name: authData.first_name,
+            last_name: authData.last_name,
             email: authData.email,
             password: authData.password,
             username: authData.username,

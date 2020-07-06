@@ -4,12 +4,12 @@
     <div class="auth-container">
       <form @submit.prevent="onSubmit">
         <AppControlInput
-          v-model="firstname"
+          v-model="first_name"
           type="text"
           placeholder="Firstname"
         />
         <AppControlInput
-          v-model="lastname"
+          v-model="last_name"
           type="text"
           placeholder="lastname"
         />
@@ -43,8 +43,8 @@ export default {
   },
   data() {
     return {
-      firstname: '',
-      lastname: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
       username: '',
@@ -57,8 +57,8 @@ export default {
     onSubmit() {
       this.$store
         .dispatch('signingup', {
-          firstname: this.firstname,
-          lastname: this.lastname,
+          first_name: this.first_name,
+          last_name: this.last_name,
           email: this.email,
           password: this.password,
           username: this.username,
