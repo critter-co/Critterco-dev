@@ -36,6 +36,16 @@ const createStore = () => {
             localStorage.setItem('token', result.idToken)
             console.log(result);
           }).catch(e => console.log(e));
+      },
+      activate(authCode) {
+        let activateUrl = "http://localhost/api/user/confirm"
+        return this.$axios.$post(activateUrl, {
+          code: authCode.code
+        }).then(result => {
+          console.log(result)
+        }).catch(e => {
+          console.log(e)
+        })
       }
     },
     getters: {
