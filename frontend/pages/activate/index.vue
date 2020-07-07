@@ -4,7 +4,7 @@
       <h1>Activate Page</h1>
         <div class="auth-container">
           <form @submit.prevent="activate">
-            <AppControlInput v-model="code" type="text" placeholder="Actication Code"/>
+            <AppControlInput v-model="code" type="text" placeholder="Activation Code"/>
             <AppButton type="submit">Activate</AppButton>
           </form>
         </div>
@@ -21,13 +21,13 @@ export default {
     AppControlInput,
     AppButton
   },
-  data(){
-    return{
+  data() {
+    return {
      code: ''
     }
   },
-  methods:{
-    activate(){
+  methods: {
+    activate() {
       this.$store.dispatch('activate',{
         code: this.code
       }).then(() => {

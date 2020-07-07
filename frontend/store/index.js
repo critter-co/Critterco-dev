@@ -37,7 +37,7 @@ const createStore = () => {
             console.log(result);
           }).catch(e => console.log(e));
       },
-      activate(authCode) {
+      activate(vuexContext, authCode) {
         let activateUrl = "http://localhost/api/user/confirm"
         return this.$axios.$post(activateUrl, {
           code: authCode.code
