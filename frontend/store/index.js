@@ -6,7 +6,6 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       token: null,
-
     },
     mutations: {
       setToken(state, token) {
@@ -17,7 +16,7 @@ const createStore = () => {
       }
     },
     actions: {
-      async signingup(vuexContext, authData, state) {
+      async signingup(vuexContext, authData) {
         let authUrl =
           "http://localhost/api/user/create/";
         return this.$axios
@@ -32,8 +31,6 @@ const createStore = () => {
             returnSecureToken: true
 
           }).then(result => {
-            vuexContext.commit('setToken', result.idToken)
-            localStorage.setItem('token', result.idToken)
             console.log(result);
           }).catch(e => console.log(e));
       },
@@ -46,10 +43,37 @@ const createStore = () => {
         }).catch(e => {
           console.log(e)
         })
+      },
+      accessToken(vuexContext, authInfo) {
+        let accessUrl = "http://localhost/api/token/"
+        return this.$axios.$post(accessUrl, {
+          email: authInfo.email,
+          password: authInfo.password,
+          returnSecureToken: true
+        }).then(async result => {
+          await vuexContext.commit('setToken', result.access)
+          this.$axios.setHeader('Authorization', `Bearer ${result.access}`)
+        }).catch(e => {
+          console.log(e)
+        })
+      },
+      postComment(vuexContext, commentData) {
+        let commentUrl = "http://localhost/api/comments/"
+        return this.$axios.$post(commentUrl, {
+          content: commentData.content,
+          biz: commentData.biz,
+          reply: commentData.reply
+        }).then(result => {
+          console.log(result)
+        }).catch(e => {
+          console.log(e)
+        })
       }
     },
     getters: {
-
+      isAuthenticated(state) {
+        return state.token != null
+      }
     },
   })
 }
