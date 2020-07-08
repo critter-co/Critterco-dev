@@ -1,4 +1,4 @@
-from biz.models import Biz
+from apps.biz.models import Biz
 from django.core.management.base import BaseCommand
 import factory
 import random
@@ -28,7 +28,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         bizs = Biz.objects.all()
         if not bizs:
-            for i in range(1000):
+            for i in range(100):
                 biz = BizFactory()
                 biz.save()
             print("Created posts")
