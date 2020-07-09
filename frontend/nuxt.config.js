@@ -21,10 +21,20 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
+    // script: [
+    //   { src: 'https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js' }
+    // ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' }
     ]
   },
+
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: { color: '#0078b0', failedColor: '#6a00b0', height: '4px', duration: 5000 },
+
   /*
   ** Global CSS
   */
@@ -36,7 +46,7 @@ export default {
   */
   plugins: [
     '~/plugins/axios',
-    '~/plugins/constant-components'
+    '~/plugins/constant-components',
   ],
   /*
   ** Auto import components

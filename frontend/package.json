@@ -14,7 +14,9 @@
     "@nuxtjs/axios": "^5.11.0",
     "cookie-universal-nuxt": "^2.1.4",
     "js-cookie": "^2.2.1",
-    "nuxt": "^2.13.0"
+    "mapbox-gl": "^1.11.1",
+    "nuxt": "^2.13.0",
+    "vue-mapbox": "^0.4.1"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.3",
