@@ -54,8 +54,15 @@ class TestBizModel(TestCase):
             "address": "test",
             "city": "test",
             "phone": "+989123456789",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    33.5780147420057,
+                    52.91015624263524
+                ]
+            },
         }
-        res = self.client.post(BIZ_URL, payload)
+        res = self.client.post(BIZ_URL, payload, format='json')
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
 
     def test_biz_unauthorized(self):
@@ -66,8 +73,15 @@ class TestBizModel(TestCase):
             "address": "test",
             "city": "test",
             "phone": "+989123456789",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    33.5780147420057,
+                    52.91015624263524
+                ]
+            },
         }
-        res = self.client.post(BIZ_URL, payload)
+        res = self.client.post(BIZ_URL, payload, format='json')
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_biz_not_loggedin(self):
@@ -78,21 +92,37 @@ class TestBizModel(TestCase):
             "description": "test",
             "address": "test",
             "city": "test",
-            "phone": "+989123456789"
+            "phone": "+989123456789",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    33.5780147420057,
+                    52.91015624263524
+                ]
+            },
         }
-        res = self.client.post(BIZ_URL, payload)
+        res = self.client.post(BIZ_URL, payload, format='json')
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_biz_edit_authorized(self):
         """Test that users in biz_edit group can edit biz infos"""
+        biz_post_group = Group.objects.get(name="biz_post")
+        biz_post_group.user_set.add(self.user1_data)
         payload = {
             "title": "test_edit",
             "description": "ORIGINAL",
             "address": "test",
             "city": "test",
-            "phone": "+989123456789"
+            "phone": "+989123456789",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    33.5780147420057,
+                    52.91015624263524
+                ]
+            },
         }
-        Biz.objects.create(**payload)
+        self.client.post(BIZ_URL, payload, format='json')
         biz_edit_group = Group.objects.get(name="biz_edit")
         biz_edit_group.user_set.add(self.user1_data)
         biz = Biz.objects.get(title="test_edit")
@@ -101,16 +131,26 @@ class TestBizModel(TestCase):
         new_biz = Biz.objects.get(title='test_edit').description
         self.assertEqual(new_biz, 'EDITED')
 
-    def test_hours_eidt(self):
+    def test_hours_edit(self):
         """Test users can edit hours"""
+        biz_post_group = Group.objects.get(name="biz_post")
+        biz_post_group.user_set.add(self.user1_data)
         biz_payload = {
             "title": "test_edit",
             "description": "ORIGINAL",
             "address": "test",
             "city": "test",
-            "phone": "+989123456789"
+            "phone": "+989123456789",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    33.5780147420057,
+                    52.91015624263524
+                ]
+            },
         }
-        biz = Biz.objects.create(**biz_payload)
+        self.client.post(BIZ_URL, biz_payload, format='json')
+        biz = Biz.objects.get(title="test_edit")
         Hours.objects.create(weekday=1, from_hour="10:00:00", to_hour="22:30:00", biz=biz)
         hour = Hours.objects.get(from_hour="10:00:00")
         res = self.client.patch(reverse('hours-detail', args=[hour.pk]), {'to_hour': '12:30:00'})
