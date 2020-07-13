@@ -26,7 +26,7 @@ export default {
       this.map = new Mapbox.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        zoom: 10,
+        zoom: 15,
         center: [51.0104916,35.8351016]
       })
     },
@@ -35,7 +35,8 @@ export default {
 </script>
 <style scoped>
 #map{
-  width: 100%;
-  height: 100vh;
+  padding: 50px 50px 50px 50px;
+  width: 80%;
+  height: 60vh;
 }
 </style>

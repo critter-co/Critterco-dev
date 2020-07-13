@@ -1,18 +1,27 @@
 import Vuex from 'vuex';
-// import Cookie from 'js-cookie';
+import date from '@/plugins/date-filter'
+import Cookie from 'js-cookie';
 
 
 const createStore = () => {
   return new Vuex.Store({
     state: {
       token: null,
+      refreshToken: null,
     },
     mutations: {
       setToken(state, token) {
         state.token = token
       },
+      setRefreshToken(state, refToken) {
+        if (process.client) {
+          state.refreshToken = JSON.stringify(localStorage.getItem("RsagT"))
+        }
+        state.refreshToken = refToken
+      },
       clearToken(state) {
-        state.token = null
+        state.token = null,
+          state.refreshToken = null
       }
     },
     actions: {
@@ -28,10 +37,8 @@ const createStore = () => {
             username: authData.username,
             name: authData.name,
             phone: authData.phone,
-            returnSecureToken: true
 
           }).then(result => {
-            console.log(result);
           }).catch(e => console.log(e));
       },
       activate(vuexContext, authCode) {
@@ -49,13 +56,64 @@ const createStore = () => {
         return this.$axios.$post(accessUrl, {
           email: authInfo.email,
           password: authInfo.password,
-          returnSecureToken: true
         }).then(async result => {
           await vuexContext.commit('setToken', result.access)
+          vuexContext.commit('setRefreshToken', result.refresh)
           this.$axios.setHeader('Authorization', `Bearer ${result.access}`)
+          Cookie.set('CAT', result.access, { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
+          Cookie.set('CATExp', date(new Date().getTime() + 5 * 60 * 1000), { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
+          localStorage.setItem('RsagT', JSON.stringify(result.refresh))
+          localStorage.setItem('RsagTExp', new Date().getTime() + 86400000)
+          console.log(result)
         }).catch(e => {
           console.log(e)
         })
+      },
+      checkAuth(vuexContext, req) {
+        let token;
+        let tokenRef;
+        let expirationDate;
+        if (req) {
+          if (!req.headers.cookie) {
+            return
+          }
+          const cat = req.headers.cookie.split(';').find(c => c.trim().startsWith('CAT='));
+          if (!cat) {
+            return
+          }
+          token = cat.split('=')[1];
+          expirationDate = req.headers.cookie.split(';').find(c => c.trim().startsWith('CATExp=')).split('=')[1];
+          if (new Date().getTime() > +expirationDate || !token) {
+            return
+          }
+          console.log("access Token: ", token)
+        }
+        else {
+          tokenRef = localStorage.getItem("RsagT");
+          expirationDate = localStorage.getItem("RsagTExp");
+          if (new Date().getTime() < +expirationDate && tokenRef) {
+            console.log("refreshing Token: ", tokenRef)
+            return this.$axios.$post("http://localhost/api/token/refresh/", {
+              refresh: tokenRef
+            }).then(async result => {
+              await this.$axios.setHeader('Authorization', `Bearer ${result.access}`)
+              token = result.access
+              Cookie.set('CAT', result.access, { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
+              Cookie.set('CATExp', date(new Date().getTime() + 5 * 60 * 1000))
+              console.log("Authorized by refresh")
+            }).catch(e => {
+              console.log(e)
+            })
+          }
+        }
+        if (new Date().getTime() > +expirationDate || !token) {
+          console.log("No token or invalid token");
+          vuexContext.dispatch("logout");
+          return;
+        }
+        vuexContext.commit("setToken", token)
+        vuexContext.commit("setRefreshToken", tokenRef)
+
       },
       postComment(vuexContext, commentData) {
         let commentUrl = "http://localhost/api/comments/"
@@ -64,15 +122,26 @@ const createStore = () => {
           biz: commentData.biz,
           reply: commentData.reply
         }).then(result => {
-          console.log(result)
         }).catch(e => {
           console.log(e)
         })
+      },
+      logout(vuexContext) {
+        vuexContext.commit('clearToken');
+        Cookie.remove('CAT');
+        Cookie.remove('CATExp');
+        if (process.client) {
+          localStorage.removeItem('RsagT');
+          localStorage.removeItem('RsagTExp');
+        }
       }
     },
     getters: {
       isAuthenticated(state) {
         return state.token != null
+      },
+      refreshAvailable(state) {
+        return state.refreshToken != null
       }
     },
   })

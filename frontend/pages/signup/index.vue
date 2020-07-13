@@ -1,7 +1,20 @@
 <template>
   <div class="admin-auth-page">
-    <h1>Welcome to Critter, Hope you Enjoy!</h1>
-    <div class="auth-container">
+    <h1>Signup/Login to continue.</h1>
+    <div v-if="isLogin" class="auth-container">
+       <form @submit.prevent="access">
+          <AppControlInput v-model="email" type="email" placeholder="Email" />
+          <AppControlInput v-model="password" type="password" placeholder="Password" />
+          <AppButton type="submit">{{ isLogin ? 'Login' : 'Signup' }}</AppButton>
+          <AppButton
+          type="button"
+          btn-style="inverted"
+          style="margin-left: 10px;"
+          @click="isLogin = !isLogin"
+          >Switch to {{ isLogin ? 'Signup' : 'Login' }}</AppButton>
+        </form>
+    </div>
+    <div v-else class="auth-container">
       <form @submit.prevent="onSubmit">
         <AppControlInput
           v-model="first_name"
@@ -26,7 +39,13 @@
         />
         <AppControlInput v-model="name" type="text" placeholder="Name" />
         <AppControlInput v-model="phone" type="text" placeholder="Phone" />
-        <AppButton type="submit">Sign up</AppButton>
+        <AppButton type="submit">{{ !isLogin ? 'Signup' : 'Login' }}</AppButton>
+        <AppButton
+          type="button"
+          btn-style="inverted"
+          style="margin-left: 10px;"
+          @click="isLogin =! isLogin"
+        >Switch to {{ isLogin ? 'Signup' : 'Login' }}</AppButton>
       </form>
     </div>
   </div>
@@ -35,9 +54,9 @@
 <script>
 export default {
   name: 'RegisterPage',
-  
   data() {
     return {
+      isLogin: false,
       first_name: '',
       last_name: '',
       email: '',
@@ -64,6 +83,14 @@ export default {
           this.$router.push('/activate')
         })
     },
+    access(){
+            this.$store.dispatch('accessToken', {
+                email: this.email,
+                password: this.password
+            }).then(()=>{
+                this.$router.push('/comments')
+            })
+        }
   },
 }
 </script>

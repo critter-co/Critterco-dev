@@ -45,8 +45,9 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~/plugins/axios',
-    '~/plugins/constant-components',
+    '~/plugins/axios.js',
+    '~/plugins/date-filter.js',
+    '~/plugins/constant-components.js',
   ],
   /*
   ** Auto import components

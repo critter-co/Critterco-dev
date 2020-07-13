@@ -1,39 +1,44 @@
 <template>
-    <div>
-        <h1>Make a comment</h1>
-        <div class="admin-auth-page">
-            <div class="auth-container">
-                <form @submit.prevent="makeComment">
-                    <AppControlInput v-model="content" type="textarea" placeholder="Type your comment..."/>
-                    <AppControlInput v-model="biz" type="text" placeholder="biz"/>
-                    <AppControlInput v-model="reply" type="text" placeholder="reply"/>
-                    <AppButton type="submit">Post</AppButton>
-                </form>
-            </div>
+  <div>
+      <h1>Make a comment</h1>
+      <div class="admin-auth-page">
+        <div class="auth-container">
+          <form @submit.prevent="makeComment">
+            <AppControlInput
+              v-model="content"
+              type="textarea"
+              placeholder="Type your comment..."
+            />
+            <AppControlInput v-model="biz" type="text" placeholder="biz" />
+            <AppControlInput v-model="reply" type="text" placeholder="reply" />
+            <AppButton type="submit">Post</AppButton>
+          </form>
         </div>
-    </div>
+      </div>
+
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'Comment',
-    middleware: "auth",
-    data(){
-        return {
-            content: '',
-            biz: '',
-            reply: ''
-        }
-    },
-    methods:{
-        makeComment(){
-            this.$store.dispatch('postComment',{
-                content: this.content,
-                biz: this.biz,
-                reply: this.reply
-            })
-        }
+  name: 'Comment',
+  middleware: ['check-auth', 'auth'],
+  data() {
+    return {
+      content: '',
+      biz: '',
+      reply: '',
     }
+  },
+  methods: {
+    makeComment() {
+      this.$store.dispatch('postComment', {
+        content: this.content,
+        biz: this.biz,
+        reply: this.reply,
+      })
+    },
+  },
 }
 </script>
 

@@ -1,5 +1,5 @@
-export default function (context) {
+export default async function (context) {
     if (!context.store.getters.isAuthenticated) {
-        context.redirect('/login')
+        await context.redirect('/login')
     }
 }
