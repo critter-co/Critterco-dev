@@ -37,18 +37,18 @@ class Biz(models.Model):
     description = models.TextField()
     address = models.CharField(max_length=255, default='')
     city = models.CharField(max_length=100)
-    phone = PhoneNumberField()
+    phone = PhoneNumberField(blank=True)
     phone2 = models.CharField(
-        validators=[phone2_regex], max_length=17, default='')
-    gallery = models.ImageField(default='')
+        validators=[phone2_regex], max_length=17, default='', blank=True)
+    gallery = models.ImageField(default='', blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    location = models.PointField(blank=True, null=True)
-    website = models.URLField(max_length=50, default='')
+    location = models.PointField()
+    website = models.URLField(max_length=50, default='', blank=True)
     instagram = models.CharField(
-        validators=[instagram_regex], max_length=255, default=''
+        validators=[instagram_regex], max_length=255, default='', blank=True
     )
     telegram = models.CharField(
-        validators=[telegram_regex], max_length=255, default=''
+        validators=[telegram_regex], max_length=255, default='', blank=True
     )
     is_claimed = models.BooleanField(default=False)
     claimed_by = models.ForeignKey(
