@@ -8,8 +8,15 @@ const createStore = () => {
     state: {
       token: null,
       refreshToken: null,
+      biz: [],
     },
     mutations: {
+      getBiz(state, bizes) {
+        state.biz = bizes
+      },
+      addBiz(state, biz) {
+        state.biz.push(biz)
+      },
       setToken(state, token) {
         state.token = token
       },
@@ -25,7 +32,19 @@ const createStore = () => {
       }
     },
     actions: {
-      async signingup(vuexContext, authData) {
+      // nuxtServerInit(vuexContext, context) {
+      //   return context.app.$axios.$get('localhost/api/biz')
+      //     .then(res => {
+      //       const bizArray = [];
+
+      //       for (const key in res.data) {
+      //         bizArray.push({...res.data[key] })
+      //         if (bizArray.length === 2) return
+      //       }
+      //       vuexContext.commit('getBiz', bizArray)
+      //     }).catch(e => console.log(e))
+      // },
+      signingup(vuexContext, authData) {
         let authUrl =
           "http://localhost/api/user/create/";
         return this.$axios
@@ -142,6 +161,9 @@ const createStore = () => {
       },
       refreshAvailable(state) {
         return state.refreshToken != null
+      },
+      loadedBizs(state) {
+        return state.biz
       }
     },
   })
