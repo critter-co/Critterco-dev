@@ -14,6 +14,12 @@
           <li class="nav-item">
             <nuxt-link to="/biz">Bizs</nuxt-link>
           </li>
+           <li
+            style="color: grey;"
+            class="nav-item"
+          >
+            Welcome {{userData[1]}}
+          </li>
           <li class="nav-item">
             <a @click="logout">Logout</a>
           </li>
@@ -23,9 +29,9 @@
         </ul>
       </div>
       <div v-else class="navigation-items">
-          <li class="nav-item">
-            <nuxt-link to="/signup">Signup/Login</nuxt-link>
-          </li>
+        <li class="nav-item">
+          <nuxt-link to="/signup">Signup/Login</nuxt-link>
+        </li>
       </div>
     </header>
   </div>
@@ -33,18 +39,19 @@
 
 <script>
 // import TheSideNavToggle from "@/components/Navigation/TheSideNavToggle";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from 'vuex'
+import axios from 'axios'
+import Cookie from 'js-cookie'
 export default {
-  name: "Header",
-  computed: mapGetters(["isAuthenticated"]),
-  methods:{
-      logout(){
-          this.$store.dispatch("logout").then(this.$router.push("/"))
-      }
-  }
-};
+  name: 'Header',
+  computed: mapGetters(['isAuthenticated','userData']),
+  methods: {
+    logout() {
+      this.$store.dispatch('logout').then(this.$router.push('/'))
+    },
+  },
+}
 </script>
-
 
 <style scoped>
 .header-container {

@@ -8,6 +8,7 @@ const createStore = () => {
     state: {
       token: null,
       refreshToken: null,
+      user: [],
       biz: [],
     },
     mutations: {
@@ -28,8 +29,12 @@ const createStore = () => {
       },
       clearToken(state) {
         state.token = null,
-          state.refreshToken = null
-      }
+          state.refreshToken = null,
+          state.user.length = 0
+      },
+      addUserInfo(state, info) {
+        state.user = (info)
+      },
     },
     actions: {
       // nuxtServerInit(vuexContext, context) {
@@ -83,7 +88,23 @@ const createStore = () => {
           Cookie.set('CATExp', date(new Date().getTime() + 5 * 60 * 1000), { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
           localStorage.setItem('RsagT', JSON.stringify(result.refresh))
           localStorage.setItem('RsagTExp', new Date().getTime() + 86400000)
-          console.log(result)
+          vuexContext.dispatch('gettingInfo', authInfo.email)
+
+        }).catch(e => {
+          console.log(e)
+        })
+      },
+      async gettingInfo(vuexContext, email) {
+        console.log('Getting info...')
+        return await this.$axios.get('http://localhost/api/user/me', {
+          email: email.email
+        }).then(res => {
+          const info = [];
+          for (const key in res.data) {
+            info.push(res.data[key])
+          }
+
+          vuexContext.commit('addUserInfo', info)
         }).catch(e => {
           console.log(e)
         })
@@ -105,7 +126,6 @@ const createStore = () => {
           if (new Date().getTime() > +expirationDate || !token) {
             return
           }
-          console.log("access Token: ", token)
         }
         else {
           tokenRef = localStorage.getItem("RsagT");
@@ -164,7 +184,13 @@ const createStore = () => {
       },
       loadedBizs(state) {
         return state.biz
-      }
+      },
+      userInfo(state) {
+        return state.user.length > 0
+      },
+      userData(state) {
+        return state.user
+      },
     },
   })
 }

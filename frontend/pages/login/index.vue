@@ -24,10 +24,13 @@ export default {
         }
     },
     methods:{
-    access(){
+    async access(){
             this.$store.dispatch('accessToken', {
                 email: this.email,
                 password: this.password
+            }),
+            await this.$store.dispatch('gettingInfo', {
+                email: this.email
             }).then(()=>{
                 this.$router.push('/comments')
             })

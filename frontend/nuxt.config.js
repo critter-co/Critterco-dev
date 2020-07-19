@@ -48,6 +48,7 @@ export default {
     '~/plugins/axios.js',
     '~/plugins/date-filter.js',
     '~/plugins/constant-components.js',
+    { src: '~/plugins/presist.js', ssr: false }
   ],
   /*
   ** Auto import components

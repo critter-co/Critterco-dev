@@ -16,7 +16,8 @@
     "js-cookie": "^2.2.1",
     "mapbox-gl": "^1.11.1",
     "nuxt": "^2.13.0",
-    "vue-mapbox": "^0.4.1"
+    "vue-mapbox": "^0.4.1",
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.3",
