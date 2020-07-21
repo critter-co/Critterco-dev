@@ -26,7 +26,7 @@ import User from "@/components/User/User"
 export default {
     name: 'UserProfile',
     components: User,
-    middleware: ['check-auth', 'auth'],
+    middleware: ['auth'],
 		computed:{
 			 ...mapGetters({info: 'userData'})
 			 },

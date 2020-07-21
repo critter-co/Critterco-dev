@@ -22,7 +22,7 @@
 <script>
 export default {
   name: 'Comment',
-  middleware: ['check-auth', 'auth'],
+  middleware: ['auth'],
   data() {
     return {
       content: '',
