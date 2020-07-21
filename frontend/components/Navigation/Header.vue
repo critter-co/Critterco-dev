@@ -15,10 +15,9 @@
             <nuxt-link to="/biz">Bizs</nuxt-link>
           </li>
            <li
-            style="color: grey;"
             class="nav-item"
           >
-            Welcome {{userData[1]}}
+            <nuxt-link  to="/me"> Welcome {{userData[1]}} </nuxt-link>
           </li>
           <li class="nav-item">
             <a @click="logout">Logout</a>

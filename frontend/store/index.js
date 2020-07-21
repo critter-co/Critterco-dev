@@ -154,6 +154,26 @@ const createStore = () => {
         vuexContext.commit("setRefreshToken", tokenRef)
 
       },
+
+      updateUser(vuexContext, updateInfo) {
+        const auth = Cookie.get('CAT');
+        return this.$axios.$patch('http://localhost/api/user/me', {
+          first_name: updateInfo.first_name,
+          last_name: updateInfo.last_name,
+          email: updateInfo.email,
+          username: updateInfo.username,
+          phone: updateInfo.phone
+        }, { headers: { 'Authorization': `Bearer ${auth}` } }).then(res => {
+          let updated = [];
+          vuexContext.commit("addUserInfo", updated)
+          for (const key in res) {
+            updated.push(res[key])
+          }
+          vuexContext.commit('addUserInfo', updated)
+        }).catch(e => {
+          console.log(e)
+        })
+      },
       postComment(vuexContext, commentData) {
         let commentUrl = "http://localhost/api/comments/"
         return this.$axios.$post(commentUrl, {
