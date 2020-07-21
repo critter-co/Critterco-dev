@@ -25,7 +25,6 @@ import {mapGetters} from 'vuex'
 import User from "@/components/User/User"
 export default {
     name: 'UserProfile',
-    components: User,
     middleware: ['auth'],
 		computed:{
 			 ...mapGetters({info: 'userData'})
