@@ -21,12 +21,13 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
-    // script: [
-    //   { src: 'https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js' }
-    // ],
+    script: [
+      { src: `"https://maps.googleapis.com/maps/api/js?key=${process.env.GoogleMapApiKey}&libraries=places" async="" defer=""` }
+    ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' }
+      { rel: 'stylesheet', href: 'https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' },
+      // { rel: 'stylesheet', type: 'text/css', href: '//db.onlinewebfonts.com/c/3671adca6f650c92b83f906e49656986?family=B+Nazanin' },
     ]
   },
 
@@ -39,8 +40,14 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/styles/main.css'
+    '~/assets/css/main.css',
+    '~/assets/css/style.css'
   ],
+
+  publicRuntimeConfig: {
+    mapbox: process.env.mapboxAcessToken,
+  },
+  privateRuntimeConfig: {},
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
@@ -49,7 +56,7 @@ export default {
     '~/plugins/axios.js',
     '~/plugins/date-filter.js',
     '~/plugins/constant-components.js',
-    { src: '~/plugins/presist.js', ssr: false }
+    { src: '~/plugins/presist.js', ssr: false },
   ],
   /*
   ** Auto import components
@@ -67,7 +74,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    'cookie-universal-nuxt'
+    'cookie-universal-nuxt',
+    'nuxt-leaflet' // The Leaflet 'L' object can be found on vue component: this.$L
   ],
   /*
   ** Axios module configuration

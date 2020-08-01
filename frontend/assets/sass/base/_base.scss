@@ -1,0 +1,40 @@
+:root {
+    --color-primary: #07C0FF;
+    --color-primary-dark: #00628D;
+
+    --color-secondary: #B4ECFF;
+
+    --color-black: #000;
+
+    --color-green: #7ed56f;
+    --color-orange: #ff7730;
+
+    --color-grey-dark: #777;
+    --color-grey-dark-2: #999;
+    --color-grey-dark-3: #333;
+    // Font
+    --default-font-size: 1.6rem;
+
+    // Grid
+    --grid-width: 114rem;
+    --gutter-vertical: 8rem;
+    --gutter-vertical-small: 6rem;
+    --gutter-horizontal: 6rem;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+    padding: 2rem;
+}

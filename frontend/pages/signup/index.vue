@@ -1,53 +1,117 @@
 <template>
-  <div class="admin-auth-page">
-    <h1>Signup/Login to continue.</h1>
-    <div v-if="isLogin" class="auth-container">
-       <form @submit.prevent="access">
-          <AppControlInput v-model="email" type="email" placeholder="Email" />
-          <AppControlInput v-model="password" type="password" placeholder="Password" />
-          <AppButton type="submit">{{ isLogin ? 'Login' : 'Signup' }}</AppButton>
+  <div>
+    <section class="section-sign">
+      <div v-if="isLogin">
+        <form class="form" @submit.prevent="access">
+            <AppControlInput
+              v-model="email"
+              type="email"
+              placeholder="ایمیل "
+              inputClass="form__input"
+              groupClass="form__group"
+              required
+            >ایمیل</AppControlInput>
+            <AppControlInput
+              v-model="password"
+              type="password"
+              placeholder="کلمه عبور "
+              inputClass="form__input"
+              groupClass="form__group"
+              required
+            >کلمه عبور</AppControlInput>
+            <AppButton type="submit" class="btn btn--blue form__btn">ورود &rarr; {{ !isLogin ? 'Signup' : 'Login' }} </AppButton>
+      
+            <AppButton
+            type="button"
+            btn-style="inverted"
+            style="margin-left: 10px;"
+            @click="isLogin = !isLogin"
+            >Switch to {{ isLogin ? 'Signup' : 'Login' }}</AppButton>
+        </form>
+      </div>
+      <div v-else>
+        <form class="form" @submit.prevent="onSubmit">
+          <h2 class="heading-secondary form__heading">به ما بپیوندید</h2>
+          <AppControlInput
+            v-model="last_name"
+            type="text"
+            placeholder="نام خانوادگی"
+            inputClass="form__input"
+            required
+          >نام خانوادگی</AppControlInput>
+
+          <AppControlInput
+            v-model="first_name"
+            type="text"
+            placeholder="نام"
+            inputClass="form__input"
+            required
+          >نام</AppControlInput>
+
+            <!-- <AppControlInput
+            v-model="name"
+            type="text"
+            placeholder="نام و نام خانوادگی"
+            inputClass="form__input"
+            required
+          >نام</AppControlInput> -->
+
+          <AppControlInput
+            v-model="email"
+            type="email"
+            placeholder="ایمیل "
+            inputClass="form__input"
+            groupClass="form__group"
+            required
+          >ایمیل</AppControlInput>
+
+          <AppControlInput
+            v-model="password"
+            type="password"
+            placeholder="کلمه عبور "
+            inputClass="form__input"
+            groupClass="form__group"
+            required
+          >کلمه عبور</AppControlInput>
+
+          <AppControlInput
+            v-model="confirmPassword"
+            type="password"
+            placeholder="تایید کلمه عبور  "
+            inputClass="form__input"
+            groupClass="form__group"
+            required
+          >تایید کلمه عبور</AppControlInput>
+
+          <AppControlInput
+            v-model="username"
+            type="text"
+            placeholder="شناسه کاربری"
+            inputClass="form__input"
+            groupClass="form__group"
+            required
+          >شناسه کاربری</AppControlInput>
+
+          <AppControlInput
+            v-model="phone"
+            type="tel"
+            pattern="[0]{1}[9]{1}[0-9]{9}"
+            placeholder="شماره موبایل "
+            inputClass="form__input"
+            groupClass="form__group"
+            required
+          >شماره موبایل</AppControlInput>
+
+          <AppButton type="submit" class="btn btn--blue form__btn">ثبت نام &rarr; {{ !isLogin ? 'Signup' : 'Login' }} </AppButton>
           <AppButton
-          type="button"
-          btn-style="inverted"
-          style="margin-left: 10px;"
-          @click="isLogin = !isLogin"
+            type="button"
+            btn-style="inverted"
+            style="margin-left: 10px;"
+            @click="isLogin =! isLogin"
           >Switch to {{ isLogin ? 'Signup' : 'Login' }}</AppButton>
         </form>
-    </div>
-    <div v-else class="auth-container">
-      <form @submit.prevent="onSubmit">
-        <AppControlInput
-          v-model="first_name"
-          type="text"
-          placeholder="Firstname"
-        />
-        <AppControlInput
-          v-model="last_name"
-          type="text"
-          placeholder="lastname"
-        />
-        <AppControlInput v-model="email" type="email" placeholder="Email" />
-        <AppControlInput
-          v-model="password"
-          type="password"
-          placeholder="Password"
-        />
-        <AppControlInput
-          v-model="username"
-          type="text"
-          placeholder="Username"
-        />
-        <AppControlInput v-model="name" type="text" placeholder="Name" />
-        <AppControlInput v-model="phone" type="text" placeholder="Phone" />
-        <AppButton type="submit">{{ !isLogin ? 'Signup' : 'Login' }}</AppButton>
-        <AppButton
-          type="button"
-          btn-style="inverted"
-          style="margin-left: 10px;"
-          @click="isLogin =! isLogin"
-        >Switch to {{ isLogin ? 'Signup' : 'Login' }}</AppButton>
-      </form>
-    </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -61,8 +125,8 @@ export default {
       last_name: '',
       email: '',
       password: '',
+      confirmPassword: '',
       username: '',
-      name: '',
       phone: '',
     }
   },
@@ -76,7 +140,6 @@ export default {
           email: this.email,
           password: this.password,
           username: this.username,
-          name: this.name,
           phone: this.phone,
         })
         .then(() => {
@@ -94,24 +157,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-h1 {
-  text-align: center;
-  text-decoration: bold;
-  padding: 0px 0px 20px 0px;
-}
-.admin-auth-page {
-  padding: 20px;
-}
-
-.auth-container {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 2px #ccc;
-  width: 300px;
-  margin: auto;
-  padding: 10px;
-  box-sizing: border-box;
-}
-</style>

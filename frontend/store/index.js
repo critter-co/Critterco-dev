@@ -4,6 +4,7 @@ import Cookie from 'js-cookie';
 
 
 const createStore = () => {
+  const local = 'http://localhost';
   return new Vuex.Store({
     state: {
       token: null,
@@ -51,7 +52,7 @@ const createStore = () => {
       // },
       signingup(vuexContext, authData) {
         let authUrl =
-          "http://localhost/api/user/create/";
+          `${local}/api/user/create/`;
         return this.$axios
           .$post(authUrl, {
             first_name: authData.first_name,
@@ -59,14 +60,13 @@ const createStore = () => {
             email: authData.email,
             password: authData.password,
             username: authData.username,
-            name: authData.name,
             phone: authData.phone,
 
           }).then(result => {
           }).catch(e => console.log(e));
       },
       activate(vuexContext, authCode) {
-        let activateUrl = "http://localhost/api/user/confirm"
+        let activateUrl = `${local}/api/user/confirm`
         return this.$axios.$post(activateUrl, {
           code: authCode.code
         }).then(result => {
@@ -76,7 +76,7 @@ const createStore = () => {
         })
       },
       accessToken(vuexContext, authInfo) {
-        let accessUrl = "http://localhost/api/token/"
+        let accessUrl = `${local}/api/token/`
         return this.$axios.$post(accessUrl, {
           email: authInfo.email,
           password: authInfo.password,
@@ -96,7 +96,7 @@ const createStore = () => {
       },
       async gettingInfo(vuexContext, email) {
         console.log('Getting info...')
-        return await this.$axios.get('http://localhost/api/user/me', {
+        return await this.$axios.get(`${local}/api/user/me`, {
           email: email.email
         }).then(res => {
           const info = [];
@@ -132,7 +132,7 @@ const createStore = () => {
           expirationDate = localStorage.getItem("RsagTExp");
           if (new Date().getTime() < +expirationDate && tokenRef) {
             console.log("refreshing Token: ", tokenRef)
-            return this.$axios.$post("http://localhost/api/token/refresh/", {
+            return this.$axios.$post(`${local}/api/token/refresh/`, {
               refresh: tokenRef
             }).then(async result => {
               await this.$axios.setHeader('Authorization', `Bearer ${result.access}`)
@@ -157,7 +157,7 @@ const createStore = () => {
 
       updateUser(vuexContext, updateInfo) {
         const auth = Cookie.get('CAT');
-        return this.$axios.$patch('http://localhost/api/user/me', {
+        return this.$axios.$patch(`${local}/api/user/me`, {
           first_name: updateInfo.first_name,
           last_name: updateInfo.last_name,
           email: updateInfo.email,
@@ -175,12 +175,39 @@ const createStore = () => {
         })
       },
       postComment(vuexContext, commentData) {
-        let commentUrl = "http://localhost/api/comments/"
+        let commentUrl = `${local}/api/comments/`
         return this.$axios.$post(commentUrl, {
           content: commentData.content,
           biz: commentData.biz,
           reply: commentData.reply
         }).then(result => {
+        }).catch(e => {
+          console.log(e)
+        })
+      },
+      createBiz(vuexContext, bizData) {
+        console.log('given coord: ' + bizData.loc)
+        const auth = Cookie.get('CAT');
+        let createBizUrl = `${local}/api/biz/`
+        return this.$axios.$post(createBizUrl, {
+          title: bizData.title,
+          description: bizData.description,
+          address: bizData.address,
+          city: bizData.city,
+          phone: bizData.phone,
+          phone2: bizData.phone2,
+          location: {
+            type: "Point",
+            coordinates: [
+              bizData.loc.lng,
+              bizData.loc.lat
+            ]
+          },
+          website: bizData.website,
+          instagram: bizData.instagram,
+          telegram: bizData.telegram
+        }, { headers: { 'Authorization': `Bearer ${auth}` } }).then(res => {
+          console.log(res);
         }).catch(e => {
           console.log(e)
         })

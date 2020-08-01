@@ -4,22 +4,21 @@
     <div>
       <Map></Map>
     </div>
-
   </div>
 </template>
 
 <script>
-import Map from '@/components/Map' 
+import Map from '@/components/Map/Map'
 export default {
   name: 'Home',
   components: {
-    Map
+    Map,
   },
 }
 </script>
 
 <style scoped>
-h1{
+h1 {
   text-align: center;
 }
 </style>
