@@ -24,10 +24,10 @@ Temporary repository for Critter app development.
 - [ ] Implement testing modules/libraries and coverage reports for TDD.
 - [ ] Configure TravisCI for frontend tests/build report on each push.
 - [ ] Add basic landing page using bootstrap/? based on given design templates, including header, main body, footer.
-- [ ] Implement authentication system using VueX. 
-- [ ] Handle user profile management functions (logout, edit info, etc.).
-- [ ] Add user profile template based on user profile management functions.
-- [ ] Add a map API for nearby businesses/services viewing.
+- [x] Implement authentication system using VueX. [commit](https://github.com/critter-co/critterco-dev/commit/851abc70cef889091e3d97b470d117b46325e145 "Job commit")
+- [x] Handle user profile management functions (logout, edit info, etc.). [commit](https://github.com/critter-co/critterco-dev/commit/4a31a5a8e2886e42435fcdde4d18b5e24516910a "Job commit")
+- [x] Add user profile template based on user profile management functions. [commit](https://github.com/critter-co/critterco-dev/commit/4a31a5a8e2886e42435fcdde4d18b5e24516910a "Job commit")
+- [x] Add a map API for nearby businesses/services viewing. [commit](https://github.com/critter-co/critterco-dev/commit/ff86229a8bda2e076f05e76ebc36aed8c8267748 "Job commit")
 - [ ] Load data from biz API to map.
 - [ ] Filter businesses/services by location according to API search queries.
 
