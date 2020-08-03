@@ -133,8 +133,7 @@ export default {
 
   methods: {
     onSubmit() {
-      this.$store
-        .dispatch('signingup', {
+      this.$store.dispatch('register/signingup', {
           first_name: this.first_name,
           last_name: this.last_name,
           email: this.email,
@@ -147,7 +146,7 @@ export default {
         })
     },
     access(){
-            this.$store.dispatch('accessToken', {
+            this.$store.dispatch('register/accessToken', {
                 email: this.email,
                 password: this.password
             }).then(()=>{

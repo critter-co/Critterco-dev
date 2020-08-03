@@ -2,15 +2,15 @@
 	<div class="admin-post-page">
 		<section class="update-form">
 			<form @submit.prevent="onSave">
-				<AppControlInput v-model="info[1]">FirstName</AppControlInput>
+				<AppControlInput id="firstname" v-model="information.firstname">First Name</AppControlInput>
 
-				<AppControlInput v-model="info[2]">Lastname</AppControlInput>
+				<AppControlInput v-model="information.lastname">Last Name</AppControlInput>
 
-				<AppControlInput v-model="info[0]">Email</AppControlInput>
+				<AppControlInput v-model="information.email">Email</AppControlInput>
 
-				<AppControlInput v-model="info[3]">Username</AppControlInput>
+				<AppControlInput v-model="information.username">Username</AppControlInput>
 
-				<AppControlInput v-model="info[5]">phone</AppControlInput>
+				<AppControlInput v-model="information.phone">phone</AppControlInput>
 				
 				<AppButton type="submit">Save</AppButton>
 
@@ -27,25 +27,31 @@ export default {
     name: 'UserProfile',
     middleware: ['auth'],
 		computed:{
-			 ...mapGetters({info: 'userData'})
+      information: {
+        get(){
+          var info = []
+          info = this.$store.state.user.user
+          return {
+            email: info[0],
+            firstname: info[1],
+            lastname: info[2],
+            username: info[3],
+            phone: info[5]
+          }
+        },
+        set(value){
+          info.push(value)
+        }
+      },
 			 },
-		date(){
-			return{
-				email: info[0],
-				first_name: info[1],
-				last_name: info[2],
-				username: info[3],
-				phone: info[5]
-			}
-		},
 		methods: {
 			onSave(){
-				this.$store.dispatch('updateUser', {
-					first_name: this.info[1],
-					last_name: this.info[2],
-					email: this.info[0],
-					username: this.info[3],
-					phone: this.info[5]
+				this.$store.dispatch('user/updateUser', {
+					first_name: this.information.firstname,
+					last_name: this.information.lastname,
+					email: this.information.email,
+					username: this.information.username,
+					phone: this.information.phone
 				}).then(() => {this.$router.push("/")})
 		},
 		onCancel() {

@@ -25,11 +25,11 @@ export default {
     },
     methods:{
     async access(){
-            this.$store.dispatch('accessToken', {
+            this.$store.dispatch('register/accessToken', {
                 email: this.email,
                 password: this.password
             }),
-            await this.$store.dispatch('gettingInfo', {
+            await this.$store.dispatch('user/gettingInfo', {
                 email: this.email
             }).then(()=>{
                 this.$router.push('/comments')

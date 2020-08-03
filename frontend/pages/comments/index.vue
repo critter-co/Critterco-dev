@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     makeComment() {
-      this.$store.dispatch('postComment', {
+      this.$store.dispatch('comment/postComment', {
         content: this.content,
         biz: this.biz,
         reply: this.reply,

@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     activate() {
-      this.$store.dispatch('activate',{
+      this.$store.dispatch('register/activate',{
         code: this.code
       }).then(() => {
           this.$router.push('/login')

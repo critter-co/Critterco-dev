@@ -76,7 +76,7 @@ export default {
        await this.$refs.marker.mapObject.on('dragend', function (ev) {
        var marker = ev.target // you could also simply access the marker through the closure
        const result = marker.getLatLng() // but using the passed ev is cleaner
-       console.log(result)
+      //  console.log(result)
       })
         
     },
@@ -86,7 +86,7 @@ export default {
     onCreate(){
       const loc = this.$refs.marker.mapObject
       this.newLoc = loc._latlng
-      this.$store.dispatch('createBiz', {
+      this.$store.dispatch('biz/createBiz', {
         title: this.title,
         description: this.description,
         address: this.address,

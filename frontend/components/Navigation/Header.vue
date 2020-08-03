@@ -43,10 +43,13 @@ import axios from 'axios'
 import Cookie from 'js-cookie'
 export default {
   name: 'Header',
-  computed: mapGetters(['isAuthenticated','userData']),
+  computed: {
+    ...mapGetters({isAuthenticated: 'register/isAuthenticated', userData: 'user/userData'})
+    },
   methods: {
-    logout() {
-      this.$store.dispatch('logout').then(this.$router.push('/'))
+   async logout() {
+     await this.$store.dispatch('user/logout');
+      this.$store.dispatch('register/logout').then(this.$router.push('/'))
     },
   },
 }

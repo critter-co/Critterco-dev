@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     createMap() {
-      ;(Mapbox.accessToken = this.access_token),
+      (Mapbox.accessToken = this.access_token),
         (this.map = new Mapbox.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/streets-v11',
