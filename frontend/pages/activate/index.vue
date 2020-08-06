@@ -1,14 +1,53 @@
 <template>
   <div>
-    <div class="admin-auth-page">
-      <h1>Activate Page</h1>
-        <div class="auth-container">
-          <form @submit.prevent="activate">
-            <AppControlInput v-model="code" type="text" placeholder="Activation Code"/>
-            <AppButton type="submit">Activate</AppButton>
-          </form>
+    <form @submit.prevent="activate">
+      <section  class="verification-section">
+        <div class="verification">
+          <div class="verification__logo-box">
+            <img src="@/assets/img/logo-large.png" alt="Critter Logo" class="verification__logo" />
+          </div>
+          <h1 class="heading--primary verification__heading">لطفا ایمیل خود را تایید کنید</h1>
+          <p
+            class="verification__text"
+          >متنی حاوی کد فعالسازی برای شما ارسال شد لطفا کد را در پایین یادداشت کنید و دکمه ارسال را بزنید. تشکر</p>
+          
+          <input v-model="code" type="text" class="verification__input" />
+          <button type="submit" class="btn btn--blue verification__btn">ارسال</button>
         </div>
-    </div>
+
+        <footer class="sign-footer">
+          <ul class="sign-footer__ul">
+            <li class="sign-footer__li">
+              <a href class="sign-footer__link">درباره ما</a>
+            </li>
+            <li class="sign-footer__li">
+              <a href class="sign-footer__link">بیشتر بدانید</a>
+            </li>
+            <li class="sign-footer__li">
+              <a href class="sign-footer__link">برای صاحبان کار</a>
+            </li>
+            <li class="sign-footer__li">
+              <a href class="sign-footer__link">زبان</a>
+            </li>
+          </ul>
+        </footer>
+
+        <div class="social">
+          <svg class="social__svg">
+            <use xlink:href="@/assets/icons/sprite.svg#icon-google" />
+          </svg>
+          <svg class="social__svg">
+            <use xlink:href="@/assets/icons/sprite.svg#icon-instagram" />
+          </svg>
+          <svg class="social__svg">
+            <use xlink:href="@/assets/icons/sprite.svg#icon-twitter" />
+          </svg>
+          <svg class="social__svg">
+            <use xlink:href="@/assets/icons/sprite.svg#icon-linkedin" />
+          </svg>
+        </div>
+      </section>
+    </form>
   </div>
 </template>
 

@@ -1,23 +1,29 @@
 body {
-  font-family: 'MjText', sans-serif;
-  font-weight: 400;
-  /*font-size: 16px; */
-  line-height: 1.6;
-  color: var(--color-grey-dark);
+    font-family: 'MjText' , sans-serif;
+    font-weight: 400;
+    /*font-size: 16px; */
+    line-height: 1.6;
+    color: var(--color-grey-dark);
+    padding: 2rem;
 }
 
 font-face {
-  font-family: 'MjText';
-  src: url('*/assets/fonts/MjText.ttf') format('truetype');
+    font-family:'MjText';
+    src: url(~assets/fonts/MjText.ttf) format('truetype');
+}
+
+.heading--primary {
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    font-size: 3rem;
+    color: #000;
 }
 
 .heading-secondary {
-  text-decoration: none;
-  font-weight: 700;
-  display: inline-block;
-  font-size: 2.5rem;
-  color: transparent;
-  background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
-  background-clip: text;
-
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    font-size: 2.5rem;
+    color: #000;
 }

@@ -1,28 +1,45 @@
 .form {
     background-color: var(--color-secondary);
-    border-radius: 5rem;
-    box-shadow: 0 2rem 6rem rgba(var(--color-primary-dark),.8);
-    padding: 6rem;
-    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 2rem 6rem rgba(#000,.8);
+    padding: 3rem;
+    grid-column: 3 / 7;
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    grid-gap: 3rem;
+    grid-template-rows: repeat(8 ,min-content);
+    column-gap: 1rem;
+
+    &--signin {
+        grid-column: 4 / 6;
+        padding: 5rem;
+
+        &__heading {
+            transform: translateY(-3rem);
+            justify-self: center;
+            grid-column: 1 / -1;
+            grid-row: 1 / 2;
+        }
+    }
 
     &__group {
-        grid-column: 1 / -1; display: grid;
+        grid-column: 1 / -1; 
+        display: grid;
     }
 
     &__heading {
+        transform: translateY(-2rem);
         justify-self: center;
         grid-column: 1 / -1;
+        grid-row: 1 / 2;
     }
     &__input {
         display: block;
         width: 100%;
         color: var(--color-black);
+        box-shadow: 0 .7rem .7rem rgba(#000, .5);
         font-size: 1.5rem;
         text-align: right;
-        padding: 1rem 1.5rem;
+        padding: 8px 15px;
         border-radius: 5px;
         border: none;
         border-bottom: 3px solid transparent;
@@ -39,8 +56,9 @@
             border-bottom: 3px solid var(--color-orange);
         }
 
-        &::-webkit-input-placeholder {
-            color: var(--color-grey-dark-3);
+        &::placeholder {
+            color: var(--color-primary-dark-2);
+            font-weight: 600;
         }
 
     }
@@ -48,13 +66,14 @@
     &__btn {
         grid-column: 1 / -1;
         justify-self: center;
+        align-self: center;
     }
 
     &__label {
         font-size: 1.2rem;
         font-weight: bold;
         margin-right: 2rem;
-        margin-top: .7rem;
+        margin-top: .3rem;
         display: block;
         transition: all .3s;
         text-align: right;

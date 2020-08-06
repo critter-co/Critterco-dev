@@ -7,6 +7,7 @@
         padding: 1.3rem 6rem;
         display: inline-block;
         color: var(--color-black);
+        font-weight: 600;
         font-size: var(--default-font-size);
         border-radius: 10rem;
         transition: all .2s;
@@ -24,15 +25,15 @@
     }
 
     &:hover {
-        transform: translateY(-.3rem) scale(1.1);
-        box-shadow: 0 1rem 2rem rgba(var(--color-black),.2);
+        transform: translateY(-.2rem) scale(1.1);
+        box-shadow: 0 1rem 1rem rgba(#000,.2);
     }
 
     &:active,
     &:focus {
         outline: none;
         transform: translateY(-.1rem) scale(1.1);
-        box-shadow: 0 .5rem 2rem rgba(var(--color-black),.2);
+        box-shadow: 0 .5rem 1rem rgba(#000,.2);
     }
 
 }

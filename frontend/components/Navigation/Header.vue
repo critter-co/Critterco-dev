@@ -1,41 +1,64 @@
 <template>
-  <div class="header-container">
-    <header class="the-header">
-      <!-- <TheSideNavToggle @toggle="$emit('sidenavToggle')" /> -->
-      <div class="logo">
-        <nuxt-link to="/">Critter</nuxt-link>
+  <header class="header">
+    <div v-if="isAuthenticated" class="header-nav">
+      <div class="header-nav__avatar-box">
+        <img class="header-nav__avatar" alt="Profile picture" />
       </div>
-      <div class="spacer"></div>
-      <div v-if="isAuthenticated" class="navigation-items">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <nuxt-link to="/comments">Comment</nuxt-link>
+      <input type="checkbox" class="header-nav__checkbox" id="navi-toggle" />
+      <label for="navi-toggle" class="header-nav__name">
+        <span class="header-nav__icon">{{ userData[1] }}&darr;</span>
+      </label>
+
+      <div class="header-nav__toggle">
+        <ul class="header-nav__ul">
+          <li class="header-nav__li">
+            <nuxt-link class="header-nav__link" to="/comments"
+              >کامنت ها</nuxt-link
+            >
           </li>
-          <li class="nav-item">
-            <nuxt-link to="/biz">Bizs</nuxt-link>
+          <li class="header-nav__li">
+            <nuxt-link class="header-nav__link" to="/biz">بیزینس</nuxt-link>
           </li>
-           <li
-            class="nav-item"
-          >
-            <nuxt-link  to="/me"> Welcome {{userData[1]}} </nuxt-link>
+          <li class="header-nav__li">
+            <nuxt-link class="header-nav__link" to="/me">پروفایل من</nuxt-link>
           </li>
-          <li class="nav-item">
-            <a @click="logout">Logout</a>
+          <li class="header-nav__li">
+            <a class="header-nav__logout" @click="logout" href="/">خروج</a>
           </li>
-          <!-- <li class="nav-item">
-            <nuxt-link to="/admin">Admin</nuxt-link>
-          </li> -->
         </ul>
       </div>
-      <div v-else class="navigation-items">
-        <li class="nav-item">
-          <nuxt-link to="/signup">Signup/Login</nuxt-link>
-        </li>
-      </div>
-    </header>
-  </div>
-</template>
+    </div>
 
+    <a href="/">
+      <img
+        src="@/assets/img/logo-large.png"
+        alt="Critter Logo"
+        class="header__logo--large"
+      />
+    </a>
+    <div class="header__box">
+      <svg class="header__svg">
+        <use xlink:href="@/assets/icons/sprite.svg#icon-search" />
+      </svg>
+      <input type="text" class="header__input" />
+    </div>
+
+    <ul class="header__nav">
+      <li class="header__li">
+        <a href="#" class="header__link">رستوران</a>
+      </li>
+      <li class="header__li">
+        <a href="#" class="header__link">کافه</a>
+      </li>
+      <li class="header__li">
+        <a href="#" class="header__link">خدمات</a>
+      </li>
+      <li class="header__li">
+        <a href="#" class="header__link">بیشتر</a>
+      </li>
+    </ul>
+  </header>
+</template>
 <script>
 // import TheSideNavToggle from "@/components/Navigation/TheSideNavToggle";
 import { mapGetters } from 'vuex'
@@ -44,78 +67,23 @@ import Cookie from 'js-cookie'
 export default {
   name: 'Header',
   computed: {
-    ...mapGetters({isAuthenticated: 'register/isAuthenticated', userData: 'user/userData'})
-    },
+    ...mapGetters({
+      isAuthenticated: 'register/isAuthenticated',
+      userData: 'user/userData',
+    }),
+  },
   methods: {
-   async logout() {
-     await this.$store.dispatch('user/logout');
+    async logout() {
+      await this.$store.dispatch('user/logout')
       this.$store.dispatch('register/logout').then(this.$router.push('/'))
     },
   },
 }
 </script>
 
-<style scoped>
-.header-container {
-  height: 60px;
-}
-
-.the-header {
-  width: 100%;
-  position: fixed;
-  height: 60px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: black;
-  z-index: 100;
-  box-sizing: border-box;
-  padding: 0 20px;
-}
-
-.logo {
-  margin: 0 10px;
-  font-size: 1.3rem;
-}
-
-.logo a {
-  text-decoration: none;
-  color: white;
-}
-
+<style>
 .spacer {
-  flex: 1;
-}
-
-.navigation-items {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .navigation-items {
-    display: block;
-  }
-}
-
-.nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-}
-
-.nav-item {
-  margin: 0 10px;
-}
-
-.nav-item a {
-  text-decoration: none;
-  color: white;
-}
-
-.nav-item a:hover,
-.nav-item a:active,
-.nav-item a.nuxt-link-active {
-  color: red;
+  flex: 2;
+  left: 0;
 }
 </style>

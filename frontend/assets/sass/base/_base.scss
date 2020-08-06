@@ -1,6 +1,8 @@
 :root {
     --color-primary: #07C0FF;
-    --color-primary-dark: #00628D;
+    --color-primary-dark-1: #06a5da;
+    --color-primary-dark-2: #0182b9;
+    --color-primary-dark-3: #003b55;
 
     --color-secondary: #B4ECFF;
 
@@ -11,9 +13,10 @@
 
     --color-grey-dark: #777;
     --color-grey-dark-2: #999;
-    --color-grey-dark-3: #333;
+    --color-grey-dark-3: #616161;
     // Font
     --default-font-size: 1.6rem;
+    --default-font-family: 'MjText';
 
     // Grid
     --grid-width: 114rem;
@@ -33,8 +36,4 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-}
-
-body {
-    padding: 2rem;
 }

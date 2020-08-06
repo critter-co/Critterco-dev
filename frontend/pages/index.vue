@@ -1,19 +1,23 @@
 <template>
   <div>
-    <h1>Welcome to Critter</h1>
-    <div>
-      <Map></Map>
-    </div>
+    <section class="section-auth">
+      <div class="row">
+        <div class="reg">
+          <nuxt-link to="/signup" class="btn btn--light u-margin-right-medium"
+            >ثبت نام</nuxt-link
+          >
+          <nuxt-link to="/login" class="btn btn--light">ورود</nuxt-link>
+        </div>
+        <div class="reg__signup"></div>
+        <div class="reg__signin"></div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import Map from '@/components/Map/Map'
 export default {
   name: 'Home',
-  components: {
-    Map,
-  },
 }
 </script>
 

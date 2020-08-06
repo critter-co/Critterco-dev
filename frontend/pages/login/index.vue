@@ -1,61 +1,90 @@
 <template>
-    <div>
-        <h1>Login Page!</h1>
-        <div class="admin-auth-page">
-            <div class="auth-container">
-                <form @submit.prevent="access">
-                    <AppControlInput v-model="email" type="email" placeholder="Email" />
-                    <AppControlInput v-model="password" type="password" placeholder="Password" />
-                    <AppButton type="submit">Login</AppButton>
-                </form>
-            </div>
-        </div>
-    </div>
+  <div>
+    <section class="section-sign">
+      <form @submit.prevent="access" class="form form--signin">
+        <h2 class="heading-secondary form--signin__heading">به ما بپیوندید</h2>
+
+        <AppControlInput
+          v-model="email"
+          type="email"
+          placeholder="ایمیل "
+          inputClass="form__input"
+          groupClass="form__group"
+          required
+          >ایمیل</AppControlInput
+        >
+
+        <AppControlInput
+          v-model="password"
+          type="password"
+          placeholder="کلمه عبور "
+          inputClass="form__input"
+          groupClass="form__group"
+          required
+          >کلمه عبور</AppControlInput
+        >
+
+        <button class="btn btn--blue form__btn">ورود &rarr;</button>
+      </form>
+
+      <footer class="sign-footer">
+        <ul class="sign-footer__ul">
+          <li class="sign-footer__li">
+            <a href class="sign-footer__link">درباره ما</a>
+          </li>
+          <li class="sign-footer__li">
+            <a href class="sign-footer__link">بیشتر بدانید</a>
+          </li>
+          <li class="sign-footer__li">
+            <a href class="sign-footer__link">برای صاحبان کار</a>
+          </li>
+          <li class="sign-footer__li">
+            <a href class="sign-footer__link">زبان</a>
+          </li>
+        </ul>
+      </footer>
+
+      <div class="social">
+        <svg class="social__svg">
+          <use xlink:href="@/assets/icons/sprite.svg#icon-google" />
+        </svg>
+        <svg class="social__svg">
+          <use xlink:href="@/assets/icons/sprite.svg#icon-instagram" />
+        </svg>
+        <svg class="social__svg">
+          <use xlink:href="@/assets/icons/sprite.svg#icon-twitter" />
+        </svg>
+        <svg class="social__svg">
+          <use xlink:href="@/assets/icons/sprite.svg#icon-linkedin" />
+        </svg>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-
 export default {
-    name: 'LoginPage',
-    data(){
-        return {
-            email: '',
-            password: ''
-        }
-    },
-    methods:{
-    async access(){
-            this.$store.dispatch('register/accessToken', {
-                email: this.email,
-                password: this.password
-            }),
-            await this.$store.dispatch('user/gettingInfo', {
-                email: this.email
-            }).then(()=>{
-                this.$router.push('/comments')
-            })
-        }
+  name: 'LoginPage',
+  data() {
+    return {
+      email: '',
+      password: '',
     }
+  },
+  methods: {
+    async access() {
+      this.$store.dispatch('register/accessToken', {
+        email: this.email,
+        password: this.password,
+      }),
+        await this.$store
+          .dispatch('user/gettingInfo', {
+            email: this.email,
+          })
+          .then(() => {
+            this.$router.push('/comments')
+          })
+    },
+  },
 }
 </script>
-
-<style scoped>
-h1 {
-  text-align: center;
-  text-decoration: bold;
-  padding: 0px 0px 20px 0px;
-}
-.admin-auth-page {
-  padding: 20px;
-}
-
-.auth-container {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 2px #ccc;
-  width: 300px;
-  margin: auto;
-  padding: 10px;
-  box-sizing: border-box;
-}
-</style>
