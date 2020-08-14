@@ -60,7 +60,7 @@ export const actions = {
       this.$axios.setHeader('Authorization', `Bearer ${result.access}`)
       Cookie.set('CAT', result.access, { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
       Cookie.set('CATExp', date(new Date().getTime() + 5 * 60 * 1000), { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
-      localStorage.setItem('RsagT', JSON.stringify(result.refresh))
+      localStorage.setItem('RsagT', result.refresh)
       localStorage.setItem('RsagTExp', new Date().getTime() + 86400000)
       vuexContext.dispatch('user/gettingInfo', authInfo.email, { root: true })
 
@@ -90,7 +90,7 @@ export const actions = {
       tokenRef = localStorage.getItem("RsagT");
       expirationDate = localStorage.getItem("RsagTExp");
       if (new Date().getTime() < +expirationDate && tokenRef) {
-        console.log("refreshing Token: ", tokenRef)
+
         return this.$axios.$post(`${local}/api/token/refresh/`, {
           refresh: tokenRef
         }).then(async result => {
@@ -98,7 +98,6 @@ export const actions = {
           token = result.access
           Cookie.set('CAT', result.access, { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
           Cookie.set('CATExp', date(new Date().getTime() + 5 * 60 * 1000))
-          console.log("Authorized by refresh")
         }).catch(e => {
           console.log(e)
         })
@@ -122,6 +121,7 @@ export const actions = {
     if (process.client) {
       localStorage.removeItem('RsagT');
       localStorage.removeItem('RsagTExp');
+      localStorage.removeItem('inf')
     }
   }
 }

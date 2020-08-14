@@ -20,6 +20,7 @@
     "mapbox-gl": "^1.11.1",
     "nuxt": "^2.13.0",
     "nuxt-leaflet": "0.0.21",
+    "secure-ls": "^1.2.6",
     "vue-browser-geolocation": "^1.8.0",
     "vue-mapbox": "^0.4.1",
     "vue2-leaflet": "^2.5.2",

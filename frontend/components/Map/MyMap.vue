@@ -49,9 +49,8 @@ export default {
       `http://localhost/api/biz/?dist=4000&point=${this.myLng},${this.myLat}&format=json`
     )
     // `bizs` has to be declared in data()
-    this.bizs = data
-    data.forEach((loc) => {
-      console.log(loc)
+    await data.forEach((loc) => {
+      console.log('lng: ' + loc.location.coordinates[0])
       const el = document.createElement('div')
       el.className = 'marker'
       new Mapbox.Marker({
