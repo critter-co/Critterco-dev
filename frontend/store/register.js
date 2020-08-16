@@ -49,6 +49,7 @@ export const actions = {
     })
   },
   accessToken(vuexContext, authInfo) {
+    const dateNow = date(new Date().getTime() + 5 * 60 * 1000)
     let accessUrl = `${local}/api/token/`
     return this.$axios.$post(accessUrl, {
       email: authInfo.email,
@@ -59,7 +60,7 @@ export const actions = {
       vuexContext.commit('setRefreshToken', result.refresh)
       this.$axios.setHeader('Authorization', `Bearer ${result.access}`)
       Cookie.set('CAT', result.access, { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
-      Cookie.set('CATExp', date(new Date().getTime() + 5 * 60 * 1000), { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
+      Cookie.set('CATExp', dateNow, { expires: new Date(new Date().getTime() + 5 * 60 * 1000) })
       localStorage.setItem('RsagT', result.refresh)
       localStorage.setItem('RsagTExp', new Date().getTime() + 86400000)
       vuexContext.dispatch('user/gettingInfo', authInfo.email, { root: true })

@@ -22,7 +22,6 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     script: [
-      { async: true, defer: true, src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GoogleMapApiKey}&callback=initMap`, type: "text/javascript" }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

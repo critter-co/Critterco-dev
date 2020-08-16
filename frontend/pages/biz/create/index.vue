@@ -56,7 +56,6 @@
 import Vue from 'vue'
 export default {
   name: 'CreatingBiz',
-  components: {},
   data() {
     return {
       visible: false,
