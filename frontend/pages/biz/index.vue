@@ -14,7 +14,6 @@ export default {
       access_token: this.$config.mapbox,
       map: {},
       bizs: [],
-      bounds: new Mapbox.LngLatBounds(),
       myLat: '',
       myLng: '',
     }
@@ -29,7 +28,7 @@ export default {
         (this.map = new Mapbox.Map({
           container: 'map',
           style: 'mapbox://styles/vturnus/ckdq0q5iw0qh81io84mszhpww',
-          zoom: 10,
+          zoom: 15,
         }))
     },
     async getBiz() {
@@ -48,8 +47,8 @@ export default {
       )
 
       // `bizs` has to be declared in data()
+      const bounds = new Mapbox.LngLatBounds()
       data.forEach((loc) => {
-        console.log('lng: ' + loc.location.coordinates[0])
         const el = document.createElement('div')
         el.className = 'marker'
         new Mapbox.Marker({
@@ -63,20 +62,21 @@ export default {
           .addTo(this.map)
 
         new Mapbox.Popup({
-          offset: 10,
+          offset: 5,
         })
           .setLngLat({
             lng: loc.location.coordinates[0],
             lat: loc.location.coordinates[1],
           })
-          .setHTML(`<p>Name ${loc.address}: ${loc.description}</p>`)
+          .setHTML(
+            `<p><a href="/biz/${loc.id}" target=_blank title="Opens in a new window">${loc.title}:</a> ${loc.description}</p>`
+          )
           .addTo(this.map)
-
-        this.bounds.extend(loc.location.coordinates)
+        bounds.extend(loc.location.coordinates)
       })
-      this.map.fitBounds(this.bounds, {
+      this.map.fitBounds(bounds, {
         padding: {
-          top: 100,
+          top: 50,
           bottom: 50,
           left: 0,
           right: 0,
