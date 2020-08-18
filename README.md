@@ -21,15 +21,15 @@ Temporary repository for Critter app development.
 ## Phase A
 
 ### Frontend todos.
-- [ ] Implement testing modules/libraries and coverage reports for TDD.
-- [ ] Configure TravisCI for frontend tests/build report on each push.
-- [ ] Add basic landing page using bootstrap/? based on given design templates, including header, main body, footer.
+- [Not available] Implement testing modules/libraries and coverage reports for TDD.
+- [Not available] Configure TravisCI for frontend tests/build report on each push. 
+- [x] Add basic landing page using bootstrap/? based on given design templates, including header, main body, footer. [commit](https://github.com/critter-co/critterco-dev/commit/14dd6c7ebbbddd0735d82ba9375ce34e8a521333 "Job commit")
 - [x] Implement authentication system using VueX. [commit](https://github.com/critter-co/critterco-dev/commit/851abc70cef889091e3d97b470d117b46325e145 "Job commit")
 - [x] Handle user profile management functions (logout, edit info, etc.). [commit](https://github.com/critter-co/critterco-dev/commit/4a31a5a8e2886e42435fcdde4d18b5e24516910a "Job commit")
 - [x] Add user profile template based on user profile management functions. [commit](https://github.com/critter-co/critterco-dev/commit/4a31a5a8e2886e42435fcdde4d18b5e24516910a "Job commit")
 - [x] Add a map API for nearby businesses/services viewing. [commit](https://github.com/critter-co/critterco-dev/commit/ff86229a8bda2e076f05e76ebc36aed8c8267748 "Job commit")
-- [ ] Load data from biz API to map.
-- [ ] Filter businesses/services by location according to API search queries.
+- [x] Load data from biz API to map. [commit](https://github.com/critter-co/critterco-dev/commit/659d4500450c2ec5649c57c482951105403f7423 "Job commit") 
+- [x] Filter businesses/services by location according to API search queries. [commit](https://github.com/critter-co/critterco-dev/commit/6f396267bde9bd6fa95deaefdb29c62b8cceb1d2 "Job commit")
 
 ### Backend todos.
 - [x] Add a consistant test method or library (such as pytest, paramteraized.). [commit](https://github.com/critter-co/critterco-dev/commit/4095c7526588ea001ab4677c7efde27e456970d8 "Job commit") 
@@ -49,12 +49,12 @@ Temporary repository for Critter app development.
 - [x] [FAILED] Replace nginx with Traefik if it offers better solution for https and certs.
 
 ### Phase A Ending:
-- [ ] Web has a frontend that shows User info/Biz info.
-- [ ] Users can post and edit Biz, and update their info, according to permissions.
-- [ ] Users can request "forgot password" and do it via email confirmation.
-- [ ] User location is determined via IP/permission for gps info. Or they select location.
-- [ ] Nearby Bizs will be shown on a map.
-- [ ] Users can comment on each biz and these comments show up on Biz pages.
+- [x] Web has a frontend that shows User info/Biz info.
+- [x] Users can post and edit Biz, and update their info, according to permissions.
+- [Postponed to P. B] Users can request "forgot password" and do it via email confirmation.
+- [x] User location is determined via IP/permission for gps info. Or they select location.
+- [x] Nearby Bizs will be shown on a map.
+- [Half Implemented] Users can comment on each biz and these comments show up on Biz pages.
 
 ## Phase B
 
