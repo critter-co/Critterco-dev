@@ -1,17 +1,23 @@
-# base image
+# Create image based on the official Node 10 image from dockerhub
 FROM node:12.2.0-alpine
 
-# set working directory
+# Create a directory where our app will be placed
+RUN mkdir -p /app
+
+# Change directory so that our commands run inside this new directory
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+# Copy dependency definitions
+COPY package*.json /app/
 
-# install and cache app dependencies
-COPY package.json /app/package.json
+# Install dependecies
 RUN npm install
-RUN npm run build
-ENV HOST 0.0.0.0
 
-# start app
-CMD ["npm", "run", "dev"]
+# Get all the code needed to run the app
+COPY . /app/
+
+# Expose the port the app runs in
+EXPOSE 4200
+
+# Serve the app
+CMD ["npm", "start"]

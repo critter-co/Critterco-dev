@@ -77,11 +77,11 @@ services:
     container_name: frontend
     build:
       context: ./frontend
-    volumes:
-      - ./frontend:/app
-      - "/app/node_modules"
+#    volumes:
+#      - ./frontend:/app
+#      - "/app/node_modules"
     ports:
-      - "3000:3000"
+      - "4200:4200"
     depends_on:
       - backend
       
