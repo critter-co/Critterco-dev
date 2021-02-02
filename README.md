@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/critter-co/critterco-dev.svg?branch=master)](https://travis-ci.com/critter-co/critterco-dev)
 # Critter 
 Temporary repository for Critter app development. 
-
+Is now running Angular on frontend.
 ## Software Requirements.
 - Docker > v19.03
 
