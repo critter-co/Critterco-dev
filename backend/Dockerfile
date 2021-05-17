@@ -1,4 +1,4 @@
-FROM revolutionsystems/python:3.6.6-wee-optimized-lto
+FROM python:3.6.13-slim-buster
 
 
 ENV PYTHONUNBUFFERED=1
@@ -14,10 +14,15 @@ RUN echo deb http://deb.debian.org/debian testing main contrib non-free >> /etc/
         apt-get clean -y
 
 # Update C env vars so compiler can find gdal
-ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
-ENV C_INCLUDE_PATH=/usr/include/gdal
+#ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
+#ENV C_INCLUDE_PATH=/usr/include/gdal
 
-RUN apt-get install tzdata
+#RUN apk update
+#RUN apk update && \
+#    apk add --no-cache --virtual build-deps python3-dev musl-dev postgresql-dev && \
+#    apk add --no-cache postgresql-dev tzdata && \
+#    apk del --no-cache build-deps
+
 ENV LC_ALL="C.UTF-8"
 ENV LC_CTYPE="C.UTF-8"
 ENV TZ=Asia/Tehran
