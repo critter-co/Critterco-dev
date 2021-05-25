@@ -3,7 +3,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -14,7 +13,6 @@ SECRET_KEY = os.environ.get("BACKEND_SECRET")
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -34,6 +32,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "django_filters",
     "django_rest_passwordreset",
+    "graphene_django",
     # "phonenumber_field",
     "rest_framework",
     "rest_framework.authtoken",
@@ -58,7 +57,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
 
 TEMPLATES = [
     {
@@ -92,6 +90,11 @@ DATABASES = {
     }
 }
 
+# Graphene Configs
+
+GRAPHENE = {
+    'SCHEMA': 'backend.schema.schema'  # Where your Graphene schema lives
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -126,7 +129,6 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
@@ -143,7 +145,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -155,7 +156,6 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "apps/core/static"),)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
-
 
 # Custom user model to be used by Django.
 AUTH_USER_MODEL = "core.user"
