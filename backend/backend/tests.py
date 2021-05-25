@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "apps.comments",
     "apps.core",
     "apps.user",
+    "apps.glip"
 ]
 
 MIDDLEWARE = [
